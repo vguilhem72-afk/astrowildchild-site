@@ -9,7 +9,7 @@ import Base from '../layouts/Base.astro';
         <span class="italic text-[color:var(--gold-bright)]">Astrodesk</span> — the desk of a working astrologer.
       </h1>
       <p class="mt-8 text-lg text-[color:var(--ink-faint)] leading-relaxed max-w-2xl">
-        Astrodesk is the professional astrology software I built for my own practice — Swiss Ephemeris precision, session-first workflow, and a design that respects the depth of the work.
+        Astrodesk is the professional astrology software I built for my own practice — accurate ephemeris calculations, a session-first workflow, and a design that respects the depth of the work.
       </p>
       <div class="mt-10 flex gap-4">
         <a href="https://astrodesk.astrowildchild.com" class="btn btn-primary" target="_blank" rel="noopener">
@@ -21,9 +21,9 @@ import Base from '../layouts/Base.astro';
 
     <div class="mt-20 grid gap-8 md:grid-cols-3">
       {[
-        { t: 'Swiss Ephemeris', d: 'Sub-arcsecond precision. The same engine used by the pros — running locally, in your browser.' },
-        { t: 'Session-first', d: 'Built for how astrologers actually work: one chart, one client, one story at a time.' },
-        { t: 'Local-first', d: 'Your client data stays on your machine. No cloud lock-in, no dependency on someone else\'s server.' },
+        { t: 'Accurate calculations', d: 'The math that matters — planetary positions, aspects, houses, transits — computed with the precision a professional session demands.' },
+        { t: 'Session-first', d: 'Built for how astrologers actually work: one chart, one client, one story at a time. Nothing between you and the reading.' },
+        { t: 'Made from the consulting room', d: "Every screen exists because a real session needed it. Not a feature checklist — a working desk shaped by two decades of client work." },
       ].map((f) => (
         <div class="card p-8">
           <h3 class="font-serif text-2xl text-[color:var(--ink-soft)]">{f.t}</h3>
