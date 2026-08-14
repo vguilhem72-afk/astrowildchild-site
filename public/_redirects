@@ -1,3 +1,7 @@
+# Canonical: www.* -> apex (301, forced)
+https://www.astrowildchild.com/*  https://astrowildchild.com/:splat  301!
+
+# WordPress post URL preservation (old permalink -> new /blog/{slug}/)
 /new-moon-in-cancer-july-14th-2026/  /blog/new-moon-in-cancer-july-14th-2026/  301
 /jupiter-in-leo-aspects-to-your-natal-planets-jun-30-2026-july-26-2027/  /blog/jupiter-in-leo-aspects-to-your-natal-planets-jun-30-2026-july-26-2027/  301
 /chiron-healing-journey-between-saturn-uranus/  /blog/chiron-healing-journey-between-saturn-uranus/  301
