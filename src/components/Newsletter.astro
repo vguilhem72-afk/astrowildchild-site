@@ -1,6 +1,8 @@
 ---
 export interface Props { compact?: boolean }
 const { compact = false } = Astro.props;
+const subject = encodeURIComponent('Add me to the Wild Letter');
+const body = encodeURIComponent("Hi Mare — I'd love to be on your newsletter list. Thanks!\n\n");
 ---
 <section class:list={['stars relative overflow-hidden rounded-sm border border-white/5', compact ? 'p-8' : 'p-12 md:p-16']}>
   <div class="max-w-xl mx-auto text-center">
@@ -11,19 +13,16 @@ const { compact = false } = Astro.props;
     <p class="mt-4 text-[color:var(--ink-faint)]">
       Monthly-ish. Never spammy. Astrology insight, upcoming transits, and behind-the-scenes.
     </p>
-    <form
-      action="https://assets.mailerlite.com/jsonp/PLACEHOLDER/forms/PLACEHOLDER/subscribe"
-      method="post"
-      class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-    >
-      <input
-        type="email"
-        name="fields[email]"
-        required
-        placeholder="you@somewhere.com"
-        class="flex-1 px-4 py-3 bg-[color:var(--night-deep)] border border-white/10 text-[color:var(--ink)] placeholder:text-[color:var(--ink-mute)] focus:outline-none focus:border-[color:var(--gold)] rounded-sm"
-      />
-      <button type="submit" class="btn btn-primary">Subscribe</button>
-    </form>
+    <div class="mt-8 flex justify-center">
+      <a
+        href={`mailto:hello@astrowildchild.com?subject=${subject}&body=${body}`}
+        class="btn btn-primary"
+      >
+        Ask to be added
+      </a>
+    </div>
+    <p class="mt-4 text-xs text-[color:var(--ink-mute)]">
+      Signup form back soon — for now, a quick email does the trick.
+    </p>
   </div>
 </section>

@@ -13,30 +13,14 @@ import Base from '../layouts/Base.astro';
         For readings, book directly via the <a href="/work-with-me" class="underline decoration-[color:var(--gold)]/50">work with me</a> page. For everything else — collaborations, press, thoughtful questions — write below.
       </p>
 
-      <form
-        name="contact"
-        method="POST"
-        data-netlify="true"
-        class="mt-12 space-y-5"
-      >
-        <input type="hidden" name="form-name" value="contact" />
-        <div>
-          <label class="block text-xs uppercase tracking-widest text-[color:var(--gold)] mb-2">Name</label>
-          <input required name="name" type="text" class="w-full px-4 py-3 bg-[color:var(--night-deep)] border border-white/10 focus:outline-none focus:border-[color:var(--gold)] rounded-sm text-[color:var(--ink)]" />
-        </div>
-        <div>
-          <label class="block text-xs uppercase tracking-widest text-[color:var(--gold)] mb-2">Email</label>
-          <input required name="email" type="email" class="w-full px-4 py-3 bg-[color:var(--night-deep)] border border-white/10 focus:outline-none focus:border-[color:var(--gold)] rounded-sm text-[color:var(--ink)]" />
-        </div>
-        <div>
-          <label class="block text-xs uppercase tracking-widest text-[color:var(--gold)] mb-2">Message</label>
-          <textarea required name="message" rows="6" class="w-full px-4 py-3 bg-[color:var(--night-deep)] border border-white/10 focus:outline-none focus:border-[color:var(--gold)] rounded-sm text-[color:var(--ink)]"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Send</button>
-      </form>
-
-      <div class="mt-12 pt-8 border-t border-white/5 text-center text-sm text-[color:var(--ink-faint)]">
-        Or email directly: <a href="mailto:hello@astrowildchild.com" class="text-[color:var(--gold-bright)]">hello@astrowildchild.com</a>
+      <div class="mt-12 text-center">
+        <a href="mailto:hello@astrowildchild.com" class="btn btn-primary text-base">
+          hello@astrowildchild.com
+        </a>
+        <p class="mt-6 text-sm text-[color:var(--ink-faint)] leading-relaxed">
+          Click above or copy the address into your favorite mail client.<br />
+          I reply personally, usually within a few days.
+        </p>
       </div>
     </div>
   </section>
