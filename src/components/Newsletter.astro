@@ -1,0 +1,29 @@
+---
+export interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+---
+<section class:list={['stars relative overflow-hidden rounded-sm border border-white/5', compact ? 'p-8' : 'p-12 md:p-16']}>
+  <div class="max-w-xl mx-auto text-center">
+    <div class="text-xs uppercase tracking-[0.25em] text-[color:var(--gold)] mb-4">The Wild Letter</div>
+    <h2 class="font-serif text-3xl md:text-4xl text-[color:var(--ink)]">
+      Cosmic notes, straight to your inbox.
+    </h2>
+    <p class="mt-4 text-[color:var(--ink-faint)]">
+      Monthly-ish. Never spammy. Astrology insight, upcoming transits, and behind-the-scenes.
+    </p>
+    <form
+      action="https://assets.mailerlite.com/jsonp/PLACEHOLDER/forms/PLACEHOLDER/subscribe"
+      method="post"
+      class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+    >
+      <input
+        type="email"
+        name="fields[email]"
+        required
+        placeholder="you@somewhere.com"
+        class="flex-1 px-4 py-3 bg-[color:var(--night-deep)] border border-white/10 text-[color:var(--ink)] placeholder:text-[color:var(--ink-mute)] focus:outline-none focus:border-[color:var(--gold)] rounded-sm"
+      />
+      <button type="submit" class="btn btn-primary">Subscribe</button>
+    </form>
+  </div>
+</section>

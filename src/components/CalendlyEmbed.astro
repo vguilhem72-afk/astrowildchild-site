@@ -1,0 +1,14 @@
+---
+export interface Props { url?: string; height?: string }
+const { url = 'https://calendly.com/mare-marepunzalan', height = '720px' } = Astro.props;
+---
+<div class="rounded-sm overflow-hidden border border-white/10 bg-[color:var(--night-deep)]">
+  <iframe
+    src={url}
+    width="100%"
+    height={height}
+    frameborder="0"
+    title="Book with Mare"
+    loading="lazy"
+  ></iframe>
+</div>

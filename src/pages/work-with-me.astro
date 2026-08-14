@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import CalendlyEmbed from '../components/CalendlyEmbed.astro';
+
+const services = [
+  {
+    name: 'Natal Reading',
+    duration: '75 minutes',
+    price: 'USD $222',
+    description: 'A deep read of your birth chart. Personality, purpose, patterns, and what you came here to do.',
+  },
+  {
+    name: 'Transit & Timing',
+    duration: '60 minutes',
+    price: 'USD $188',
+    description: 'What the sky is doing over your chart right now. Timing decisions, understanding a season.',
+  },
+  {
+    name: 'Astrocartography',
+    duration: '75 minutes',
+    price: 'USD $244',
+    description: 'Where on Earth activates what in you. Relocation, travel, and the geography of your becoming.',
+  },
+  {
+    name: 'Follow-up Session',
+    duration: '45 minutes',
+    price: 'USD $144',
+    description: 'For returning clients. Check-in, integration, or a focused question.',
+  },
+];
+---
+<Base title="Work with Mare — Astrology Readings & Astrocartography">
+  <section class="container-awc py-24 md:py-32">
+    <div class="max-w-3xl">
+      <div class="text-xs uppercase tracking-[0.3em] text-[color:var(--gold)] mb-6">Work with Me</div>
+      <h1 class="font-serif text-5xl md:text-6xl leading-[1.05]">Readings & Sessions</h1>
+      <p class="mt-6 text-lg text-[color:var(--ink-faint)] max-w-2xl leading-relaxed">
+        One-to-one work is where the real astrology happens. Choose the container that fits — book below, or reach out first if you're not sure.
+      </p>
+    </div>
+
+    <div class="mt-16 grid gap-6 md:grid-cols-2">
+      {services.map((s) => (
+        <div class="card p-8">
+          <div class="flex items-baseline justify-between gap-4">
+            <h3 class="font-serif text-2xl text-[color:var(--ink)]">{s.name}</h3>
+            <span class="text-sm text-[color:var(--gold)] whitespace-nowrap">{s.price}</span>
+          </div>
+          <div class="text-xs uppercase tracking-widest text-[color:var(--ink-mute)] mt-2">{s.duration}</div>
+          <p class="mt-4 text-[color:var(--ink-soft)] leading-relaxed">{s.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-24">
+      <div class="max-w-2xl mx-auto text-center mb-10">
+        <div class="text-xs uppercase tracking-[0.25em] text-[color:var(--gold)] mb-3">Booking</div>
+        <h2 class="font-serif text-4xl md:text-5xl">Pick your time</h2>
+      </div>
+      <CalendlyEmbed />
+    </div>
+  </section>
+</Base>

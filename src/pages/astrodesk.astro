@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Astrodesk — The Professional Astrology Tool by Mare Punzalan">
+  <section class="stars container-awc py-24 md:py-32">
+    <div class="max-w-3xl">
+      <div class="text-xs uppercase tracking-[0.3em] text-[color:var(--gold)] mb-6">The Tool I Use Daily</div>
+      <h1 class="font-serif text-5xl md:text-7xl leading-[1.02]">
+        <span class="italic text-[color:var(--gold-bright)]">Astrodesk</span> — the desk of a working astrologer.
+      </h1>
+      <p class="mt-8 text-lg text-[color:var(--ink-faint)] leading-relaxed max-w-2xl">
+        Astrodesk is the professional astrology software I built for my own practice — Swiss Ephemeris precision, session-first workflow, and a design that respects the depth of the work.
+      </p>
+      <div class="mt-10 flex gap-4">
+        <a href="https://astrodesk.astrowildchild.com" class="btn btn-primary" target="_blank" rel="noopener">
+          Open Astrodesk →
+        </a>
+        <a href="/work-with-me" class="btn btn-ghost">Book a reading instead</a>
+      </div>
+    </div>
+
+    <div class="mt-20 grid gap-8 md:grid-cols-3">
+      {[
+        { t: 'Swiss Ephemeris', d: 'Sub-arcsecond precision. The same engine used by the pros — running locally, in your browser.' },
+        { t: 'Session-first', d: 'Built for how astrologers actually work: one chart, one client, one story at a time.' },
+        { t: 'Local-first', d: 'Your client data stays on your machine. No cloud lock-in, no dependency on someone else\'s server.' },
+      ].map((f) => (
+        <div class="card p-8">
+          <h3 class="font-serif text-2xl text-[color:var(--ink-soft)]">{f.t}</h3>
+          <p class="mt-3 text-[color:var(--ink-faint)] leading-relaxed">{f.d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>

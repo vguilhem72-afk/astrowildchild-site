@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --night: #0F0818;
+  --night-deep: #07060A;
+  --wine: #2A0D1C;
+  --wine-deep: #1A0A12;
+  --wine-glow: #320F22;
+  --ink: #F5F0EA;
+  --ink-soft: #E8D5A3;
+  --ink-faint: #8B7A6E;
+  --ink-mute: #5A4A54;
+  --gold: #C9A96E;
+  --gold-bright: #E8D5A3;
+  --rose: #C47E8A;
+  --rose-deep: #8B5A78;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html {
+  background: var(--night-deep);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 900px 500px at 50% -10%, var(--wine-glow) 0%, transparent 60%),
+    radial-gradient(ellipse 700px 400px at 80% 40%, rgba(50,15,34,.35) 0%, transparent 65%),
+    var(--night-deep);
+  min-height: 100vh;
+}
+
+/* Subtle star field */
+.stars {
+  position: relative;
+  isolation: isolate;
+}
+.stars::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    radial-gradient(1px 1px at 12% 22%, rgba(245,240,234,.55), transparent 50%),
+    radial-gradient(1px 1px at 78% 14%, rgba(245,240,234,.45), transparent 50%),
+    radial-gradient(1.2px 1.2px at 44% 68%, rgba(232,213,163,.55), transparent 50%),
+    radial-gradient(1px 1px at 20% 82%, rgba(245,240,234,.4), transparent 50%),
+    radial-gradient(1px 1px at 88% 62%, rgba(232,213,163,.4), transparent 50%),
+    radial-gradient(1.5px 1.5px at 60% 32%, rgba(245,240,234,.6), transparent 50%);
+  opacity: .5;
+  pointer-events: none;
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Links */
+a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 200ms cubic-bezier(.2,.7,.3,1);
+}
+a:hover {
+  color: var(--gold-bright);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2px;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 200ms cubic-bezier(.2,.7,.3,1);
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.btn-primary {
+  background: var(--gold-bright);
+  color: var(--night-deep);
+}
+.btn-primary:hover {
+  background: var(--gold);
+  color: var(--night-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(201,169,110,.25);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  border-color: color-mix(in oklab, var(--ink-soft) 30%, transparent);
+}
+.btn-ghost:hover {
+  border-color: var(--gold-bright);
+  color: var(--gold-bright);
+}
+
+/* Cards */
+.card {
+  background: color-mix(in oklab, var(--wine) 60%, transparent);
+  border: 1px solid color-mix(in oklab, var(--ink-mute) 30%, transparent);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 250ms cubic-bezier(.2,.7,.3,1);
+}
+.card:hover {
+  border-color: color-mix(in oklab, var(--gold) 45%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.35);
+}
+
+/* Prose (blog article) */
+.prose-awc {
+  font-family: var(--sans);
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--ink);
+  max-width: 680px;
+  margin-inline: auto;
+}
+.prose-awc h2 {
+  font-family: var(--serif);
+  font-size: 2rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--ink-soft);
+}
+.prose-awc h3 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--ink-soft);
+}
+.prose-awc p { margin-bottom: 1.25rem; }
+.prose-awc a { color: var(--gold-bright); border-bottom: 1px solid color-mix(in oklab, var(--gold) 40%, transparent); }
+.prose-awc a:hover { color: var(--gold); }
+.prose-awc blockquote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.35rem;
+  color: var(--ink-soft);
+  border-left: 2px solid var(--gold);
+  padding-left: 1.25rem;
+  margin: 1.75rem 0;
+}
+.prose-awc img {
+  border-radius: 4px;
+  margin: 1.5rem 0;
+  box-shadow: 0 8px 32px rgba(0,0,0,.4), 0 0 0 1px color-mix(in oklab, var(--gold) 20%, transparent);
+}
+.prose-awc code {
+  font-family: var(--sans);
+  background: color-mix(in oklab, var(--wine-deep) 80%, transparent);
+  padding: 0.15em 0.4em;
+  border-radius: 2px;
+  font-size: 0.9em;
+  color: var(--ink-soft);
+}
+.prose-awc ul, .prose-awc ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.prose-awc li { margin-bottom: 0.5rem; }
+.prose-awc hr {
+  border: none;
+  border-top: 1px solid color-mix(in oklab, var(--ink-mute) 50%, transparent);
+  margin: 2.5rem 0;
+}
+
+/* Container */
+.container-awc {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}

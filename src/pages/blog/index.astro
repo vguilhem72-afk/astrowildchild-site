@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const all = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const categories = Array.from(new Set(all.flatMap((p) => p.data.categories))).sort();
+const posts = all.slice(0, 12);
+---
+<Base title="Journal — Astro Wild Child">
+  <section class="container-awc py-20 md:py-28">
+    <div class="max-w-3xl">
+      <div class="text-xs uppercase tracking-[0.3em] text-[color:var(--gold)] mb-6">Journal</div>
+      <h1 class="font-serif text-5xl md:text-6xl leading-[1.05]">Writings & Reflections</h1>
+      <p class="mt-6 text-lg text-[color:var(--ink-faint)] max-w-2xl leading-relaxed">
+        Notes on transits, myth, method, and the wild edges of astrology.
+      </p>
+    </div>
+
+    {categories.length > 0 && (
+      <div class="mt-12 flex flex-wrap gap-2">
+        <a href="/blog" class="text-xs uppercase tracking-widest px-3 py-1.5 border border-[color:var(--gold)] text-[color:var(--gold-bright)] rounded-sm">All</a>
+        {categories.map((c) => (
+          <a
+            href={`/blog/category/${c.toLowerCase().replace(/\s+/g, '-')}/`}
+            class="text-xs uppercase tracking-widest px-3 py-1.5 border border-white/10 text-[color:var(--ink-faint)] hover:text-[color:var(--gold-bright)] hover:border-[color:var(--gold)]/40 rounded-sm transition-colors"
+          >{c}</a>
+        ))}
+      </div>
+    )}
+
+    <div class="mt-12">
+      {posts.length === 0 ? (
+        <p class="text-[color:var(--ink-faint)] italic">Posts coming soon — content import in progress.</p>
+      ) : (
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((p) => (
+            <PostCard
+              href={`/blog/${p.slug}/`}
+              title={p.data.title}
+              date={p.data.date}
+              excerpt={p.data.excerpt}
+              image={p.data.featured_image}
+              category={p.data.categories[0]}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+
+    {all.length > 12 && (
+      <div class="mt-16 flex justify-center">
+        <a href="/blog/page/2/" class="btn btn-ghost">Older posts →</a>
+      </div>
+    )}
+  </section>
+</Base>

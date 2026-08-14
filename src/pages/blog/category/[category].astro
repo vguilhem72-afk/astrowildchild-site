@@ -1,0 +1,41 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PostCard from '../../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const all = await getCollection('posts', ({ data }) => !data.draft);
+  const cats = Array.from(new Set(all.flatMap((p) => p.data.categories)));
+  return cats.map((cat) => {
+    const slug = cat.toLowerCase().replace(/\s+/g, '-');
+    const posts = all
+      .filter((p) => p.data.categories.includes(cat))
+      .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+    return { params: { category: slug }, props: { category: cat, posts } };
+  });
+};
+
+const { category, posts } = Astro.props;
+---
+<Base title={`${category} — Journal — Astro Wild Child`}>
+  <section class="container-awc py-20 md:py-28">
+    <a href="/blog" class="text-xs uppercase tracking-widest text-[color:var(--ink-faint)] hover:text-[color:var(--gold-bright)]">← All posts</a>
+    <div class="mt-8 text-xs uppercase tracking-[0.3em] text-[color:var(--gold)] mb-4">Category</div>
+    <h1 class="font-serif text-5xl md:text-6xl">{category}</h1>
+    <p class="mt-4 text-[color:var(--ink-faint)]">{posts.length} post{posts.length === 1 ? '' : 's'}</p>
+
+    <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {posts.map((p) => (
+        <PostCard
+          href={`/blog/${p.slug}/`}
+          title={p.data.title}
+          date={p.data.date}
+          excerpt={p.data.excerpt}
+          image={p.data.featured_image}
+          category={p.data.categories[0]}
+        />
+      ))}
+    </div>
+  </section>
+</Base>

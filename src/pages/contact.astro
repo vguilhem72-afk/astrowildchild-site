@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Contact Mare — Astro Wild Child">
+  <section class="container-awc py-24 md:py-32">
+    <div class="max-w-2xl mx-auto">
+      <div class="text-xs uppercase tracking-[0.3em] text-[color:var(--gold)] mb-6 text-center">Contact</div>
+      <h1 class="font-serif text-5xl md:text-6xl text-center leading-[1.05]">Get in touch</h1>
+      <p class="mt-6 text-lg text-[color:var(--ink-faint)] text-center leading-relaxed">
+        For readings, book directly via the <a href="/work-with-me" class="underline decoration-[color:var(--gold)]/50">work with me</a> page. For everything else — collaborations, press, thoughtful questions — write below.
+      </p>
+
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        class="mt-12 space-y-5"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <div>
+          <label class="block text-xs uppercase tracking-widest text-[color:var(--gold)] mb-2">Name</label>
+          <input required name="name" type="text" class="w-full px-4 py-3 bg-[color:var(--night-deep)] border border-white/10 focus:outline-none focus:border-[color:var(--gold)] rounded-sm text-[color:var(--ink)]" />
+        </div>
+        <div>
+          <label class="block text-xs uppercase tracking-widest text-[color:var(--gold)] mb-2">Email</label>
+          <input required name="email" type="email" class="w-full px-4 py-3 bg-[color:var(--night-deep)] border border-white/10 focus:outline-none focus:border-[color:var(--gold)] rounded-sm text-[color:var(--ink)]" />
+        </div>
+        <div>
+          <label class="block text-xs uppercase tracking-widest text-[color:var(--gold)] mb-2">Message</label>
+          <textarea required name="message" rows="6" class="w-full px-4 py-3 bg-[color:var(--night-deep)] border border-white/10 focus:outline-none focus:border-[color:var(--gold)] rounded-sm text-[color:var(--ink)]"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+      </form>
+
+      <div class="mt-12 pt-8 border-t border-white/5 text-center text-sm text-[color:var(--ink-faint)]">
+        Or email directly: <a href="mailto:hello@astrowildchild.com" class="text-[color:var(--gold-bright)]">hello@astrowildchild.com</a>
+      </div>
+    </div>
+  </section>
+</Base>

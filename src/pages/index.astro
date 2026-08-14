@@ -1,0 +1,83 @@
+---
+import Base from '../layouts/Base.astro';
+import PostCard from '../components/PostCard.astro';
+import Newsletter from '../components/Newsletter.astro';
+import CalendlyEmbed from '../components/CalendlyEmbed.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 4);
+---
+<Base title="Astro Wild Child — Astrology & Astrocartography by Mare Punzalan">
+  <!-- Hero -->
+  <section class="stars relative">
+    <div class="container-awc py-24 md:py-36 grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <div class="text-xs uppercase tracking-[0.3em] text-[color:var(--gold)] mb-6">Astrology · Astrocartography · Guidance</div>
+        <h1 class="font-serif text-5xl md:text-7xl leading-[1.02] text-[color:var(--ink)]">
+          Meet yourself <em class="italic text-[color:var(--gold-bright)]">under the stars</em>.
+        </h1>
+        <p class="mt-8 text-lg text-[color:var(--ink-faint)] max-w-lg leading-relaxed">
+          I'm Mare Punzalan — an astrologer who reads the sky the way it was meant to be read: with rigor, with reverence, and with room for your wild edges.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a href="/work-with-me" class="btn btn-primary">Book a Reading</a>
+          <a href="/blog" class="btn btn-ghost">Read the Journal</a>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="aspect-[4/5] rounded-sm overflow-hidden border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,.5)]">
+          <img
+            src="/images/mare-portrait.jpg"
+            alt="Mare Punzalan"
+            class="w-full h-full object-cover"
+            onerror="this.style.display='none';this.parentElement.classList.add('bg-[color:var(--wine)]')"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured posts -->
+  <section class="container-awc py-24">
+    <div class="flex items-end justify-between mb-12">
+      <div>
+        <div class="text-xs uppercase tracking-[0.25em] text-[color:var(--gold)] mb-3">From the Journal</div>
+        <h2 class="font-serif text-4xl md:text-5xl">Recent writings</h2>
+      </div>
+      <a href="/blog" class="hidden md:inline-block btn btn-ghost">All posts →</a>
+    </div>
+    {posts.length === 0 ? (
+      <p class="text-[color:var(--ink-faint)] italic">Posts coming soon — content import in progress.</p>
+    ) : (
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        {posts.map((p) => (
+          <PostCard
+            href={`/blog/${p.slug}/`}
+            title={p.data.title}
+            date={p.data.date}
+            excerpt={p.data.excerpt}
+            image={p.data.featured_image}
+            category={p.data.categories[0]}
+          />
+        ))}
+      </div>
+    )}
+  </section>
+
+  <!-- Newsletter -->
+  <section class="container-awc py-12">
+    <Newsletter />
+  </section>
+
+  <!-- Calendly -->
+  <section class="container-awc py-24">
+    <div class="max-w-2xl mx-auto text-center mb-10">
+      <div class="text-xs uppercase tracking-[0.25em] text-[color:var(--gold)] mb-3">Sit with me</div>
+      <h2 class="font-serif text-4xl md:text-5xl">Book a private session</h2>
+      <p class="mt-4 text-[color:var(--ink-faint)]">Natal, transit, relocation. Choose a time that works — the rest we'll handle together.</p>
+    </div>
+    <CalendlyEmbed />
+  </section>
+</Base>

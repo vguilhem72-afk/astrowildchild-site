@@ -1,0 +1,49 @@
+---
+const nav = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/work-with-me', label: 'Work with Me' },
+  { href: '/blog', label: 'Journal' },
+  { href: '/astrodesk', label: 'Astrodesk' },
+  { href: '/contact', label: 'Contact' },
+];
+const path = Astro.url.pathname;
+---
+<header class="sticky top-0 z-50 backdrop-blur-md bg-[color:var(--night-deep)]/80 border-b border-white/5">
+  <div class="container-awc flex items-center justify-between py-4">
+    <a href="/" class="font-serif text-2xl tracking-wide text-[color:var(--ink-soft)] hover:text-[color:var(--gold-bright)]">
+      Astro <span class="italic text-[color:var(--gold)]">Wild Child</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'text-xs uppercase tracking-[0.15em] transition-colors',
+            path === item.href || (item.href !== '/' && path.startsWith(item.href))
+              ? 'text-[color:var(--gold-bright)]'
+              : 'text-[color:var(--ink-faint)] hover:text-[color:var(--ink-soft)]',
+          ]}
+        >{item.label}</a>
+      ))}
+    </nav>
+    <button
+      id="mobile-toggle"
+      class="md:hidden text-[color:var(--ink-soft)] p-2"
+      aria-label="Toggle menu"
+    >☰</button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-[color:var(--night-deep)]/95">
+    <nav class="container-awc py-4 flex flex-col gap-3">
+      {nav.map((item) => (
+        <a href={item.href} class="text-sm uppercase tracking-[0.15em] text-[color:var(--ink-soft)] py-1">{item.label}</a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-toggle');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

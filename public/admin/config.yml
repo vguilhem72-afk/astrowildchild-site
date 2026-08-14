@@ -1,0 +1,43 @@
+backend:
+  name: github
+  repo: OWNER/astrowildchild-site  # TODO: replace OWNER with the GitHub org/user once repo is created
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+publish_mode: editorial_workflow
+
+site_url: https://astrowildchild.com
+display_url: https://astrowildchild.com
+logo_url: https://astrowildchild.com/favicon.svg
+
+collections:
+  - name: "posts"
+    label: "Blog Posts"
+    label_singular: "Post"
+    folder: "src/content/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string", default: "Mare Punzalan" }
+      - { label: "Featured Image", name: "featured_image", widget: "image", required: false }
+      - { label: "Categories", name: "categories", widget: "list", default: [] }
+      - { label: "Tags", name: "tags", widget: "list", required: false, default: [] }
+      - { label: "Excerpt", name: "excerpt", widget: "text", required: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "Pages"
+    folder: "src/content/pages"
+    create: false
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }

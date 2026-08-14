@@ -1,0 +1,108 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post, all: posts } }));
+};
+
+const { post, all } = Astro.props;
+const { Content } = await post.render();
+
+// Related posts — same category, exclude current, up to 3
+const related = all
+  .filter((p) => p.slug !== post.slug && p.data.categories.some((c) => post.data.categories.includes(c)))
+  .slice(0, 3);
+
+const wordCount = post.body.split(/\s+/).length;
+const readingTime = Math.max(1, Math.round(wordCount / 220));
+const dateStr = post.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+---
+<Base
+  title={`${post.data.title} — Astro Wild Child`}
+  description={post.data.excerpt}
+  image={post.data.featured_image}
+>
+  <article>
+    <!-- Hero -->
+    <header class="stars container-awc pt-20 md:pt-28 pb-14">
+      <div class="max-w-prose mx-auto text-center">
+        {post.data.categories[0] && (
+          <a href={`/blog/category/${post.data.categories[0].toLowerCase().replace(/\s+/g, '-')}/`}
+             class="inline-block text-[10px] uppercase tracking-[0.3em] text-[color:var(--gold)] mb-6">
+            {post.data.categories[0]}
+          </a>
+        )}
+        <h1 class="font-serif text-4xl md:text-6xl leading-[1.05] text-[color:var(--ink)]">
+          {post.data.title}
+        </h1>
+        <div class="mt-8 text-xs uppercase tracking-[0.2em] text-[color:var(--ink-mute)] flex justify-center gap-6">
+          <span>{dateStr}</span>
+          <span>·</span>
+          <span>{readingTime} min read</span>
+          <span>·</span>
+          <span>{post.data.author}</span>
+        </div>
+      </div>
+    </header>
+
+    {post.data.featured_image && (
+      <div class="container-awc max-w-4xl mb-16">
+        <img
+          src={post.data.featured_image}
+          alt={post.data.title}
+          class="w-full aspect-[16/9] object-cover rounded-sm border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,.5)]"
+        />
+      </div>
+    )}
+
+    <!-- Body -->
+    <div class="container-awc pb-16">
+      <div class="prose-awc">
+        <Content />
+      </div>
+    </div>
+
+    <!-- Share -->
+    <div class="container-awc pb-12">
+      <div class="max-w-prose mx-auto flex justify-between items-center pt-8 border-t border-white/5">
+        <div class="text-xs uppercase tracking-widest text-[color:var(--ink-mute)]">
+          {post.data.tags.length > 0 && post.data.tags.slice(0, 5).map((t) => (
+            <span class="mr-3">#{t}</span>
+          ))}
+        </div>
+        <button
+          class="btn btn-ghost text-xs"
+          onclick={`navigator.clipboard.writeText(location.href); this.textContent='Copied ✓'`}
+        >Copy link</button>
+      </div>
+    </div>
+
+    <!-- Related -->
+    {related.length > 0 && (
+      <section class="container-awc py-16 border-t border-white/5">
+        <div class="text-xs uppercase tracking-[0.25em] text-[color:var(--gold)] mb-8 text-center">Keep reading</div>
+        <div class="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
+          {related.map((p) => (
+            <PostCard
+              href={`/blog/${p.slug}/`}
+              title={p.data.title}
+              date={p.data.date}
+              excerpt={p.data.excerpt}
+              image={p.data.featured_image}
+              category={p.data.categories[0]}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+    <div class="container-awc py-16">
+      <Newsletter compact />
+    </div>
+  </article>
+</Base>
