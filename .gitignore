@@ -25,3 +25,9 @@ pnpm-debug.log*
 !.vscode/launch.json
 !.vscode/settings.json
 .idea
+
+# Local-only
+mare-tutorial/
+.claude/launch.json
+migration/
+.wrangler/

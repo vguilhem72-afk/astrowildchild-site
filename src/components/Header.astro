@@ -4,6 +4,7 @@ const nav = [
   { href: '/about', label: 'About' },
   { href: '/work-with-me', label: 'Work with Me' },
   { href: '/blog', label: 'Journal' },
+  { href: '/shop', label: 'Shop' },
   { href: '/astrodesk', label: 'Astrodesk' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -11,8 +12,11 @@ const path = Astro.url.pathname;
 ---
 <header class="sticky top-0 z-50 backdrop-blur-md bg-[color:var(--night-deep)]/80 border-b border-white/5">
   <div class="container-awc flex items-center justify-between py-4">
-    <a href="/" class="font-serif text-2xl tracking-wide text-[color:var(--ink-soft)] hover:text-[color:var(--gold-bright)]">
-      Astro <span class="italic text-[color:var(--gold)]">Wild Child</span>
+    <a href="/" class="brand-wordmark group flex items-center gap-3 text-[color:var(--ink)] hover:text-[color:var(--gold-bright)] transition-colors" aria-label="Astro Wild Child — home">
+      <img src="/brand/awc-logo.png" alt="" width="52" height="20" class="opacity-90 group-hover:opacity-100 transition-opacity" />
+      <span class="font-serif text-[22px] leading-none tracking-[-.01em] font-medium hidden sm:inline">
+        astro <span class="italic text-[color:var(--gold-bright)]">wild</span> child
+      </span>
     </a>
     <nav class="hidden md:flex items-center gap-7">
       {nav.map((item) => (

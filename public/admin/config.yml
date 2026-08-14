@@ -1,43 +1,73 @@
 backend:
   name: github
-  repo: OWNER/astrowildchild-site  # TODO: replace OWNER with the GitHub org/user once repo is created
+  repo: vguilhem72-afk/astrowildchild-site
   branch: main
 
+# Media (upload folder + how the site references them)
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
-publish_mode: editorial_workflow
+# Editorial workflow (draft → review → publish) — disabled for simplicity.
+# Mare is the only editor; changes go straight to main on save.
+# publish_mode: editorial_workflow
 
 site_url: https://astrowildchild.com
 display_url: https://astrowildchild.com
-logo_url: https://astrowildchild.com/favicon.svg
+logo_url: https://astrowildchild.com/brand/awc-logo.png
+
+# Slugs: lowercase, unicode-clean, dashes
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
 
 collections:
   - name: "posts"
     label: "Blog Posts"
     label_singular: "Post"
+    description: "Journal entries — transits, myths, method, reflections."
     folder: "src/content/posts"
     create: true
+    delete: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     extension: "md"
     format: "frontmatter"
+    preview_path: "blog/{{slug}}"
+    identifier_field: title
+    summary: "{{title}} — {{year}}-{{month}}-{{day}}"
+    sortable_fields: ['date', 'title']
+    view_filters:
+      - label: "Published"
+        field: draft
+        pattern: false
+      - label: "Drafts"
+        field: draft
+        pattern: true
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Title", name: "title", widget: "string", hint: "The headline of the post — shown in the journal grid and as the page H1." }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ", date_format: "YYYY-MM-DD", time_format: "HH:mm", hint: "When the post was (or will be) published." }
       - { label: "Author", name: "author", widget: "string", default: "Mare Punzalan" }
-      - { label: "Featured Image", name: "featured_image", widget: "image", required: false }
-      - { label: "Categories", name: "categories", widget: "list", default: [] }
+      - { label: "Featured Image", name: "featured_image", widget: "image", required: false, hint: "Cover image for the post card and article header. 1600×1000 works best." }
+      - { label: "Excerpt", name: "excerpt", widget: "text", required: false, hint: "Short teaser shown on the journal grid. 1–2 sentences." }
+      - { label: "Categories", name: "categories", widget: "list", default: [], hint: "e.g. moon, mercury, transits. Lowercase, one per line." }
       - { label: "Tags", name: "tags", widget: "list", required: false, default: [] }
-      - { label: "Excerpt", name: "excerpt", widget: "text", required: false }
-      - { label: "Draft", name: "draft", widget: "boolean", default: false, required: false }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Draft?", name: "draft", widget: "boolean", default: false, required: false, hint: "If ON, the post is hidden from the site." }
+      - { label: "Body", name: "body", widget: "markdown", hint: "The article body. Markdown supported — use the toolbar for formatting and images." }
 
   - name: "pages"
     label: "Pages"
+    label_singular: "Page"
+    description: "Standalone site pages (about-adjacent content, book pages, etc.)."
     folder: "src/content/pages"
-    create: false
+    create: true
+    delete: false
     extension: "md"
     format: "frontmatter"
+    identifier_field: title
+    summary: "{{title}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", required: false }
+      - { label: "Featured Image", name: "featured_image", widget: "image", required: false }
+      - { label: "Excerpt", name: "excerpt", widget: "text", required: false }
       - { label: "Body", name: "body", widget: "markdown" }

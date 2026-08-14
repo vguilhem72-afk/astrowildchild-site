@@ -2,53 +2,64 @@
 import Base from '../layouts/Base.astro';
 import CalendlyEmbed from '../components/CalendlyEmbed.astro';
 
+const CAL = 'https://calendly.com/mare-marepunzalan';
 const services = [
   {
-    name: 'Natal Reading',
-    duration: '75 minutes',
-    price: 'USD $222',
-    description: 'A deep read of your birth chart. Personality, purpose, patterns, and what you came here to do.',
+    name: 'Birth Chart — Full Picture',
+    duration: '1 hr 30 min',
+    price: '$200 USD',
+    description: 'A complete read of your natal chart. Personality, purpose, patterns, and what you came here to do. The main session.',
+    url: `${CAL}/1-5-hr-meeting`,
   },
   {
-    name: 'Transit & Timing',
-    duration: '60 minutes',
-    price: 'USD $188',
-    description: 'What the sky is doing over your chart right now. Timing decisions, understanding a season.',
+    name: 'Synastry Session',
+    duration: '2 hr',
+    price: '$300 USD',
+    description: 'Two charts side by side. Romantic, business, family — the mechanics of how you meet each other.',
+    url: `${CAL}/synastry`,
   },
   {
-    name: 'Astrocartography',
-    duration: '75 minutes',
-    price: 'USD $244',
-    description: 'Where on Earth activates what in you. Relocation, travel, and the geography of your becoming.',
+    name: 'Intro Session',
+    duration: '30 min',
+    price: '$50 USD',
+    description: 'A first look. One focused question, one theme, or a light read to see if we click.',
+    url: `${CAL}/30min`,
   },
   {
-    name: 'Follow-up Session',
-    duration: '45 minutes',
-    price: 'USD $144',
-    description: 'For returning clients. Check-in, integration, or a focused question.',
+    name: 'Quicky Session',
+    duration: '15 min',
+    price: '$30 USD',
+    description: 'A single specific question — a transit, a decision, a moment. Fast, direct, useful.',
+    url: `${CAL}/15-min-session`,
   },
 ];
 ---
 <Base title="Work with Mare — Astrology Readings & Astrocartography">
   <section class="container-awc py-24 md:py-32">
-    <div class="max-w-3xl">
-      <div class="text-xs uppercase tracking-[0.3em] text-[color:var(--gold)] mb-6">Work with Me</div>
-      <h1 class="font-serif text-5xl md:text-6xl leading-[1.05]">Readings & Sessions</h1>
-      <p class="mt-6 text-lg text-[color:var(--ink-faint)] max-w-2xl leading-relaxed">
-        One-to-one work is where the real astrology happens. Choose the container that fits — book below, or reach out first if you're not sure.
-      </p>
+    <div class="grid md:grid-cols-[1fr_320px] gap-12 items-center">
+      <div class="max-w-3xl">
+        <div class="text-xs uppercase tracking-[0.3em] text-[color:var(--gold)] mb-6">Work with Me</div>
+        <h1 class="font-serif text-5xl md:text-6xl leading-[1.05]">Readings & Sessions</h1>
+        <p class="mt-6 text-lg text-[color:var(--ink-faint)] max-w-2xl leading-relaxed">
+          One-to-one work is where the real astrology happens. Choose the container that fits — book below, or reach out first if you're not sure.
+        </p>
+      </div>
+      <div class="hidden md:block">
+        <img src="/images/mare-warm.jpg" alt="Mare Punzalan — Astro Wild Child" width="320" height="427" class="rounded-lg object-cover w-full aspect-[3/4] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] border border-[color:var(--gold)]/15" loading="lazy" />
+      </div>
     </div>
 
     <div class="mt-16 grid gap-6 md:grid-cols-2">
       {services.map((s) => (
-        <div class="card p-8">
+        <a href={s.url} target="_blank" rel="noopener" class="card p-8 group block transition-transform duration-200 hover:-translate-y-[2px] hover:border-[color:var(--gold)]">
           <div class="flex items-baseline justify-between gap-4">
-            <h3 class="font-serif text-2xl text-[color:var(--ink)]">{s.name}</h3>
+            <h3 class="font-serif text-2xl text-[color:var(--ink)] group-hover:text-[color:var(--gold-bright)] transition-colors">{s.name}</h3>
             <span class="text-sm text-[color:var(--gold)] whitespace-nowrap">{s.price}</span>
           </div>
           <div class="text-xs uppercase tracking-widest text-[color:var(--ink-mute)] mt-2">{s.duration}</div>
           <p class="mt-4 text-[color:var(--ink-soft)] leading-relaxed">{s.description}</p>
-        </div>
+          <div class="mt-5 text-[11px] uppercase tracking-[.15em] text-[color:var(--ink-faint)] group-hover:text-[color:var(--gold-bright)] transition-colors">Book this session →</div>
+        </a>
       ))}
     </div>
 

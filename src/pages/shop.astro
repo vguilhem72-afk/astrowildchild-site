@@ -1,0 +1,142 @@
+---
+import Base from '../layouts/Base.astro';
+
+const digital = [
+  {
+    title: 'Know Thyself — Guided Astrology Workbook',
+    subtitle: '154-page digital workbook · PDF',
+    price: '$27',
+    blurb: 'Slow down, look inside, understand yourself on a deeper level. Through your planets, houses, aspects and cosmic points — from confusion to clarity. Compatible with iPad + Apple Pencil (GoodNotes, Notability) or print at home.',
+    image: '/images/uploads/2025/12/2-Practice-Know-Thyself-640x808.png',
+    url: 'https://astrowildchild.gumroad.com/l/know-thyself-workbook',
+    cta: 'Get the workbook — $27',
+    platform: 'Instant download · Gumroad',
+  },
+  {
+    title: 'The Triple Threat Map',
+    subtitle: 'Digital PDF · $11',
+    price: '$11',
+    blurb: 'A personal map of your three most-charged transits over the next 12 months — with dated windows, aspect quality, and how each will land in your life. Built to be printable and re-readable.',
+    image: null,
+    url: 'https://astrowildchild.gumroad.com/l/triple-threat-map',
+    cta: 'Get the map — $11',
+    platform: 'Instant download · Gumroad',
+  },
+];
+
+const books = [
+  {
+    title: 'Know Thyself',
+    subtitle: 'A Guided Astrology Workbook for Natal Chart Interpretation',
+    blurb: 'The print edition. A companion to your birth chart, page after page, for deep inner clarity and personal growth.',
+    image: '/images/uploads/2025/12/2-Practice-Know-Thyself-640x808.png',
+    url: 'https://www.amazon.ca/Know-Thyself-Astrology-Workbook-Interpretation/dp/1069162256/',
+  },
+  {
+    title: 'When You Wish Upon A Fish',
+    subtitle: "Children's story · Rhyming adventure",
+    blurb: 'A magical rhyming adventure of dreams, wishes, and discovering that the sweetest rewards are earned.',
+    image: '/images/uploads/2025/11/WhenYouWishUponAFish-640x649.png',
+    url: 'https://www.amazon.ca/When-You-Wish-Upon-Fish-ebook/dp/B0G27XFMJW',
+  },
+  {
+    title: "What's So Special About Stella?",
+    subtitle: "Children's story · Self-love",
+    blurb: "An inspirational children's story encouraging young readers to explore questions about inner beauty, imperfections, and self-love.",
+    image: '/images/uploads/2025/11/AVerySpecialDollNamedStella-640x649.png',
+    url: 'https://www.amazon.ca/Whats-Special-About-Stella-self-acceptance-ebook/dp/B0G1LCQ67B/',
+  },
+  {
+    title: 'Pitter-Patter, What Does It Matter?',
+    subtitle: "Children's story · Nature's rhythm",
+    blurb: "A thoughtful story about Pepper who is annoyed at the rain and hides from it — until she meets the beauty of nature's cycle and rhythm.",
+    image: '/images/uploads/2025/04/EbookCoverPitter-Patter-What-Does-It-Matter-640x649.jpg',
+    url: 'https://www.amazon.ca/Pitter-Patter-What-Does-Matter-thoughtful-ebook/dp/B0F4Y4GD9J/',
+  },
+  {
+    title: 'The Boy Who Reached The Moon',
+    subtitle: "Children's story · Self-acceptance",
+    blurb: "An inspiring story about a creative boy named Kep who seeks the moon's help to gain self-acceptance and confidence.",
+    image: '/images/uploads/2024/12/The-Boy-Who-Reached-The-Moon-640x640.png',
+    url: 'https://www.amazon.ca/stores/Mare-Punzalan/author/B0DPLHWN8F',
+  },
+];
+---
+
+<Base title="Shop — Astro Wild Child" description="Digital workbooks and books by Mare Punzalan. Astrology, self-discovery, and children's stories inspired by the stars.">
+  <section class="pt-24 pb-16">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="text-center mb-16">
+        <p class="text-gold text-xs tracking-[.42em] uppercase mb-4">Shop</p>
+        <h1 class="font-serif text-5xl md:text-6xl font-medium leading-tight text-ink mb-6">Books, workbooks &amp; digital maps.</h1>
+        <p class="font-serif italic text-xl text-ink-soft max-w-2xl mx-auto leading-relaxed">Everything Mare has written — from deep-dive astrology workbooks to children's stories, plus digital tools to work with your own chart.</p>
+      </div>
+
+      <!-- Digital / Gumroad -->
+      <div class="mb-24">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="text-gold text-[10px] tracking-[.28em] uppercase">Digital · Instant download</span>
+          <span class="flex-1 h-px bg-line"></span>
+        </div>
+        <div class="grid gap-8 md:grid-cols-2">
+          {digital.map((p) => (
+            <article class="card group">
+              <a href={p.url} target="_blank" rel="noopener" class="block">
+                <div class="aspect-[4/5] overflow-hidden rounded-t-lg bg-wine-deep relative">
+                  {p.image ? (
+                    <img src={p.image} alt={p.title} class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy" />
+                  ) : (
+                    <div class="w-full h-full flex items-center justify-center text-center p-8" style="background: radial-gradient(ellipse at 50% 30%, #2A0D1C 0%, #1A0A12 55%, #07060A 100%);">
+                      <div>
+                        <p class="text-gold text-[10px] tracking-[.42em] uppercase mb-4">Digital PDF</p>
+                        <h3 class="font-serif italic text-3xl text-gold-bright">{p.title}</h3>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div class="p-6">
+                  <p class="text-ink-faint text-[10.5px] tracking-[.2em] uppercase mb-2">{p.platform}</p>
+                  <h3 class="font-serif text-2xl font-medium text-ink mb-1 group-hover:text-gold-bright transition-colors">{p.title}</h3>
+                  <p class="text-ink-soft text-sm mb-3 italic">{p.subtitle}</p>
+                  <p class="text-ink-faint text-[14px] leading-relaxed mb-5">{p.blurb}</p>
+                  <span class="inline-block bg-gold-bright text-night-deep px-5 py-2.5 text-[11.5px] font-medium tracking-[.1em] uppercase rounded transition-transform group-hover:-translate-y-[1px]">{p.cta}</span>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <!-- Print / Amazon -->
+      <div>
+        <div class="flex items-center gap-3 mb-8">
+          <span class="text-gold text-[10px] tracking-[.28em] uppercase">On Amazon · Print &amp; Kindle</span>
+          <span class="flex-1 h-px bg-line"></span>
+        </div>
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {books.map((b) => (
+            <article class="card group">
+              <a href={b.url} target="_blank" rel="noopener" class="block">
+                <div class="aspect-square overflow-hidden rounded-t-lg bg-wine-deep">
+                  <img src={b.image} alt={b.title} class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy" />
+                </div>
+                <div class="p-5">
+                  <h3 class="font-serif text-xl font-medium text-ink mb-1 group-hover:text-gold-bright transition-colors">{b.title}</h3>
+                  <p class="text-ink-soft text-[13px] mb-3 italic">{b.subtitle}</p>
+                  <p class="text-ink-faint text-[13px] leading-relaxed mb-4">{b.blurb}</p>
+                  <span class="inline-block border border-line hover:border-gold text-ink-soft hover:text-gold-bright px-4 py-2 text-[11px] tracking-[.1em] uppercase rounded transition-colors">Available on Amazon →</span>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div class="text-center mt-16">
+        <a href="https://www.amazon.ca/stores/Mare-Punzalan/author/B0DPLHWN8F" target="_blank" rel="noopener" class="inline-block text-gold hover:text-gold-bright text-sm border-b border-line hover:border-gold pb-1 transition-colors">
+          See Mare's full author store on Amazon →
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

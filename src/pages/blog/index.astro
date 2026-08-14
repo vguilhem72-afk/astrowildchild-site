@@ -8,6 +8,7 @@ const all = (await getCollection('posts', ({ data }) => !data.draft))
 
 const categories = Array.from(new Set(all.flatMap((p) => p.data.categories))).sort();
 const posts = all.slice(0, 12);
+const totalPosts = all.length;
 ---
 <Base title="Journal — Astro Wild Child">
   <section class="container-awc py-20 md:py-28">
@@ -19,19 +20,49 @@ const posts = all.slice(0, 12);
       </p>
     </div>
 
-    {categories.length > 0 && (
-      <div class="mt-12 flex flex-wrap gap-2">
-        <a href="/blog" class="text-xs uppercase tracking-widest px-3 py-1.5 border border-[color:var(--gold)] text-[color:var(--gold-bright)] rounded-sm">All</a>
-        {categories.map((c) => (
-          <a
-            href={`/blog/category/${c.toLowerCase().replace(/\s+/g, '-')}/`}
-            class="text-xs uppercase tracking-widest px-3 py-1.5 border border-white/10 text-[color:var(--ink-faint)] hover:text-[color:var(--gold-bright)] hover:border-[color:var(--gold)]/40 rounded-sm transition-colors"
-          >{c}</a>
-        ))}
+    {/* Search bar */}
+    <div class="mt-12 max-w-2xl">
+      <label for="blog-search" class="block text-xs uppercase tracking-[0.2em] text-[color:var(--gold)] mb-3">
+        Search the journal
+      </label>
+      <div class="relative">
+        <input
+          id="blog-search"
+          type="search"
+          placeholder="Search by keyword, planet, sign, transit…"
+          autocomplete="off"
+          class="w-full pl-12 pr-12 py-4 bg-[color:var(--night-deep)] border border-white/10 focus:outline-none focus:border-[color:var(--gold)] rounded-sm text-[color:var(--ink)] placeholder:text-[color:var(--ink-mute)] transition-colors"
+        />
+        <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[color:var(--ink-mute)] pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+        </svg>
+        <button
+          id="blog-search-clear"
+          type="button"
+          aria-label="Clear search"
+          class="hidden absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full text-[color:var(--ink-mute)] hover:text-[color:var(--gold-bright)] hover:bg-white/5 transition-colors"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
-    )}
+      <div id="blog-search-status" class="mt-3 text-xs text-[color:var(--ink-faint)] min-h-[1.2em]"></div>
+    </div>
 
-    <div class="mt-12">
+    {/* Category filters — hidden while searching */}
+    <div id="blog-categories" data-total={totalPosts} class="mt-8 flex flex-wrap gap-2">
+      <a href="/blog" class="text-xs uppercase tracking-widest px-3 py-1.5 border border-[color:var(--gold)] text-[color:var(--gold-bright)] rounded-sm">All</a>
+      {categories.map((c) => (
+        <a
+          href={`/blog/category/${c.toLowerCase().replace(/\s+/g, '-')}/`}
+          class="text-xs uppercase tracking-widest px-3 py-1.5 border border-white/10 text-[color:var(--ink-faint)] hover:text-[color:var(--gold-bright)] hover:border-[color:var(--gold)]/40 rounded-sm transition-colors"
+        >{c}</a>
+      ))}
+    </div>
+
+    {/* Default (SSG) posts grid — hidden while search is active */}
+    <div id="blog-default" class="mt-12">
       {posts.length === 0 ? (
         <p class="text-[color:var(--ink-faint)] italic">Posts coming soon — content import in progress.</p>
       ) : (
@@ -41,19 +72,255 @@ const posts = all.slice(0, 12);
               href={`/blog/${p.slug}/`}
               title={p.data.title}
               date={p.data.date}
-              excerpt={p.data.excerpt}
-              image={p.data.featured_image}
+              excerpt={p.data.excerpt || undefined}
+              image={p.data.featured_image || undefined}
               category={p.data.categories[0]}
             />
           ))}
         </div>
       )}
+      {all.length > 12 && (
+        <div class="mt-16 flex justify-center">
+          <a href="/blog/page/2/" class="btn btn-ghost">Older posts →</a>
+        </div>
+      )}
     </div>
 
-    {all.length > 12 && (
-      <div class="mt-16 flex justify-center">
-        <a href="/blog/page/2/" class="btn btn-ghost">Older posts →</a>
+    {/* Search results grid — populated by client JS */}
+    <div id="blog-results" class="mt-12 hidden">
+      <div id="blog-results-grid" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"></div>
+      <div id="blog-results-empty" class="hidden text-center py-16">
+        <p class="text-[color:var(--ink-faint)] italic text-lg">No posts match this search.</p>
+        <p class="text-[color:var(--ink-mute)] text-sm mt-2">Try a different keyword, or <a href="/blog" class="underline decoration-[color:var(--gold)]/50">browse all posts</a>.</p>
       </div>
-    )}
+    </div>
   </section>
+
+  {/* Card template — cloned by client JS. Kept out of the visual tree via hidden. */}
+  <template id="blog-card-template">
+    <a class="card block group js-card" href="#">
+      <div class="js-image-wrap aspect-[16/10] overflow-hidden bg-[color:var(--wine-deep)]">
+        <img class="js-image w-full h-full object-cover transition-transform duration-500 ease-awc group-hover:scale-105" alt="" loading="lazy" />
+      </div>
+      <div class="p-6">
+        <div class="js-category text-[10px] uppercase tracking-[0.2em] text-[color:var(--gold)] mb-3"></div>
+        <h3 class="js-title font-serif text-xl md:text-2xl leading-tight text-[color:var(--ink)] group-hover:text-[color:var(--gold-bright)] transition-colors"></h3>
+        <p class="js-excerpt mt-3 text-sm text-[color:var(--ink-faint)] leading-relaxed line-clamp-3"></p>
+        <div class="js-date mt-4 text-xs text-[color:var(--ink-mute)] uppercase tracking-widest"></div>
+      </div>
+    </a>
+  </template>
 </Base>
+
+<script>
+  type PostRecord = {
+    slug: string;
+    title: string;
+    date: string;
+    excerpt: string;
+    categories: string[];
+    tags: string[];
+    image: string | null;
+    body: string;
+  };
+
+  const input = document.getElementById('blog-search') as HTMLInputElement | null;
+  const clearBtn = document.getElementById('blog-search-clear') as HTMLButtonElement | null;
+  const status = document.getElementById('blog-search-status') as HTMLDivElement | null;
+  const defaultBlock = document.getElementById('blog-default') as HTMLDivElement | null;
+  const categoriesBlock = document.getElementById('blog-categories') as HTMLDivElement | null;
+  const resultsBlock = document.getElementById('blog-results') as HTMLDivElement | null;
+  const resultsGrid = document.getElementById('blog-results-grid') as HTMLDivElement | null;
+  const resultsEmpty = document.getElementById('blog-results-empty') as HTMLDivElement | null;
+  const template = document.getElementById('blog-card-template') as HTMLTemplateElement | null;
+
+  if (input && clearBtn && status && defaultBlock && resultsBlock && resultsGrid && resultsEmpty && template) {
+    let index: PostRecord[] | null = null;
+    let loading: Promise<PostRecord[]> | null = null;
+    let debounceTimer: number | null = null;
+
+    const loadIndex = (): Promise<PostRecord[]> => {
+      if (index) return Promise.resolve(index);
+      if (loading) return loading;
+      loading = fetch('/search-index.json')
+        .then((r) => {
+          if (!r.ok) throw new Error('Search index unavailable (' + r.status + ')');
+          return r.json();
+        })
+        .then((data: PostRecord[]) => {
+          index = data;
+          return data;
+        })
+        .catch((err) => {
+          console.error('[search] failed to load index', err);
+          if (status) status.textContent = 'Search temporarily unavailable.';
+          loading = null;
+          throw err;
+        });
+      return loading;
+    };
+
+    const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const formatDate = (iso: string) => {
+      const d = new Date(iso);
+      return `${monthNames[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+    };
+
+    const highlight = (text: string, terms: string[]) => {
+      if (!terms.length || !text) return text;
+      const escaped = terms.filter(Boolean).map((t) => t.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'));
+      if (!escaped.length) return text;
+      const re = new RegExp('(' + escaped.join('|') + ')', 'gi');
+      return text.replace(re, '<mark class="bg-[color:var(--gold)]/25 text-[color:var(--gold-bright)] rounded-sm px-0.5">$1</mark>');
+    };
+
+    const scoreAndFilter = (query: string, posts: PostRecord[]) => {
+      const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+      if (!terms.length) return [];
+      const scored: { p: PostRecord; score: number }[] = [];
+      for (const p of posts) {
+        const title = p.title.toLowerCase();
+        const excerpt = p.excerpt.toLowerCase();
+        const body = p.body.toLowerCase();
+        const cats = p.categories.join(' ').toLowerCase();
+        const tags = p.tags.join(' ').toLowerCase();
+        let score = 0;
+        let missing = false;
+        for (const t of terms) {
+          let termScore = 0;
+          if (title.includes(t)) termScore += 10;
+          if (cats.includes(t)) termScore += 6;
+          if (tags.includes(t)) termScore += 5;
+          if (excerpt.includes(t)) termScore += 3;
+          if (body.includes(t)) termScore += 1;
+          if (termScore === 0) { missing = true; break; }
+          score += termScore;
+        }
+        if (!missing) scored.push({ p, score });
+      }
+      scored.sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        return new Date(b.p.date).valueOf() - new Date(a.p.date).valueOf();
+      });
+      return scored.map((s) => s.p);
+    };
+
+    const buildCard = (p: PostRecord, terms: string[]) => {
+      const node = template.content.firstElementChild!.cloneNode(true) as HTMLAnchorElement;
+      node.setAttribute('href', `/blog/${p.slug}/`);
+      const imgWrap = node.querySelector('.js-image-wrap') as HTMLDivElement;
+      const img = node.querySelector('.js-image') as HTMLImageElement;
+      const cat = node.querySelector('.js-category') as HTMLDivElement;
+      const title = node.querySelector('.js-title') as HTMLHeadingElement;
+      const excerpt = node.querySelector('.js-excerpt') as HTMLParagraphElement;
+      const date = node.querySelector('.js-date') as HTMLDivElement;
+
+      if (p.image) {
+        img.setAttribute('src', p.image);
+        img.setAttribute('alt', p.title);
+      } else {
+        imgWrap.remove();
+      }
+      if (p.categories.length) {
+        cat.textContent = p.categories[0];
+      } else {
+        cat.remove();
+      }
+      title.innerHTML = highlight(p.title, terms);
+      if (p.excerpt) {
+        excerpt.innerHTML = highlight(p.excerpt, terms);
+      } else {
+        excerpt.remove();
+      }
+      date.textContent = formatDate(p.date);
+      return node;
+    };
+
+    const showDefault = () => {
+      resultsBlock.classList.add('hidden');
+      resultsGrid.innerHTML = '';
+      resultsEmpty.classList.add('hidden');
+      defaultBlock.classList.remove('hidden');
+      if (categoriesBlock) categoriesBlock.classList.remove('hidden');
+      status.textContent = '';
+      clearBtn.classList.add('hidden');
+    };
+
+    const showResults = async (query: string) => {
+      clearBtn.classList.remove('hidden');
+      defaultBlock.classList.add('hidden');
+      if (categoriesBlock) categoriesBlock.classList.add('hidden');
+      resultsBlock.classList.remove('hidden');
+      status.textContent = 'Searching…';
+      try {
+        const posts = await loadIndex();
+        const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+        const matches = scoreAndFilter(query, posts);
+        resultsGrid.innerHTML = '';
+        if (matches.length === 0) {
+          resultsEmpty.classList.remove('hidden');
+          status.textContent = `No posts match "${query}".`;
+          return;
+        }
+        resultsEmpty.classList.add('hidden');
+        const frag = document.createDocumentFragment();
+        for (const p of matches) frag.appendChild(buildCard(p, terms));
+        resultsGrid.appendChild(frag);
+        status.textContent = `${matches.length} result${matches.length === 1 ? '' : 's'} for "${query}".`;
+      } catch {
+        // status already updated by loadIndex
+      }
+    };
+
+    const handleQuery = (raw: string) => {
+      const q = raw.trim();
+      if (debounceTimer) window.clearTimeout(debounceTimer);
+      if (!q) {
+        showDefault();
+        const url = new URL(window.location.href);
+        url.searchParams.delete('q');
+        window.history.replaceState({}, '', url.pathname + (url.search ? url.search : '') + url.hash);
+        return;
+      }
+      debounceTimer = window.setTimeout(() => {
+        void showResults(q);
+        const url = new URL(window.location.href);
+        url.searchParams.set('q', q);
+        window.history.replaceState({}, '', url.pathname + '?' + url.searchParams.toString() + url.hash);
+      }, 150);
+    };
+
+    input.addEventListener('input', (e) => handleQuery((e.target as HTMLInputElement).value));
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        input.value = '';
+        handleQuery('');
+      }
+    });
+    clearBtn.addEventListener('click', () => {
+      input.value = '';
+      handleQuery('');
+      input.focus();
+    });
+
+    // Restore ?q= from URL
+    const initial = new URL(window.location.href).searchParams.get('q');
+    if (initial) {
+      input.value = initial;
+      void showResults(initial);
+      clearBtn.classList.remove('hidden');
+      defaultBlock.classList.add('hidden');
+      if (categoriesBlock) categoriesBlock.classList.add('hidden');
+      resultsBlock.classList.remove('hidden');
+    }
+
+    // Cmd/Ctrl+K focuses the search from anywhere on the page
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        input.focus();
+        input.select();
+      }
+    });
+  }
+</script>
