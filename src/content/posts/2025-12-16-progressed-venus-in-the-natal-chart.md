@@ -13,7 +13,7 @@ wp_id: 7898
 original_url: "https://astrowildchild.com/progressed-venus-in-the-natal-chart/"
 type: "post"
 ---
-## **![Progressed Venus ](/images/uploads/2025/12/dec-post-7.50.56%E2%80%AFPM-640x792.png)Progressed Venus in the Natal Chart:**_Was everything leading up to this progression?_
+## **![Progressed Venus ](/images/uploads/2025/12/dec-post-7.50.56-PM-640x792.png)Progressed Venus in the Natal Chart:**_Was everything leading up to this progression?_
 
 I have a [Venus](https://astrowildchild.com/venus-in-astrology/) in Scorpio natally, and anyone who knows enough about astrology knows that Venus isn’t the most comfortable placement here. She can’t fully expand love in the way she—or we—are meant to. Venus, the goddess of beauty, relationships, pleasure, and the finer things in life, when she’s at her best (usually in Libra, Taurus, or Pisces), is like velvety chocolate melting in your mouth. It sits right, melts softly into your life, and tastes so goooooood. But when she is in her fall or detriment (Venus Scorpio), her comfort level is compromised—like hard candy: sour to the taste and an awkward bite.
 
