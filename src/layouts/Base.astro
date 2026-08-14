@@ -36,6 +36,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#2A0D1C" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title="Astro Wild Child" href="/rss.xml" />
 
@@ -45,6 +48,50 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    {/* Schema.org — helps search engines (and their AIs) understand what this site is */}
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://astrowildchild.com/#person",
+          "name": "Mare Punzalan",
+          "givenName": "Mare",
+          "familyName": "Punzalan",
+          "jobTitle": "Astrologer",
+          "description": "Toronto-based professional astrologer with over two decades of client work, specializing in evolutionary, psychological, and predictive astrology, with a focus on AstroCartoGraphy.",
+          "url": "https://astrowildchild.com/",
+          "email": "hello@astrowildchild.com",
+          "image": "https://astrowildchild.com/images/mare-warm.jpg",
+          "address": { "@type": "PostalAddress", "addressLocality": "Toronto", "addressCountry": "CA" },
+          "knowsAbout": ["Astrology", "Astrocartography", "Natal Chart Reading", "Synastry", "Transits", "Evolutionary Astrology"],
+          "sameAs": ["https://instagram.com/astro.wild.child/", "https://facebook.com/astrowildchild/"]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://astrowildchild.com/#business",
+          "name": "Astro Wild Child",
+          "alternateName": "Astro Wild Child — Astrology by Mare Punzalan",
+          "description": "Professional astrology readings, astrocartography, and cosmic guidance by Mare Punzalan.",
+          "url": "https://astrowildchild.com/",
+          "logo": "https://astrowildchild.com/brand/awc-logo.png",
+          "image": "https://astrowildchild.com/images/mare-warm.jpg",
+          "founder": { "@id": "https://astrowildchild.com/#person" },
+          "areaServed": "Worldwide",
+          "priceRange": "$30–$300"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://astrowildchild.com/#website",
+          "url": "https://astrowildchild.com/",
+          "name": "Astro Wild Child",
+          "description": "Astrology, astrocartography, and cosmic guidance by Mare Punzalan.",
+          "publisher": { "@id": "https://astrowildchild.com/#business" },
+          "inLanguage": "en"
+        }
+      ]
+    })} />
   </head>
   <body>
     <Header />
