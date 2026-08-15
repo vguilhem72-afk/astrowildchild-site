@@ -1,8 +1,10 @@
 ---
 export interface Props { compact?: boolean }
 const { compact = false } = Astro.props;
-const subject = encodeURIComponent('Add me to the Wild Letter');
-const body = encodeURIComponent("Hi Mare — I'd love to be on your newsletter list. Thanks!\n\n");
+
+// Mailchimp — Mare's list on us4, form: "Wild Letter — astrowildchild.com"
+const MC_ACTION = 'https://astrowildchild.us4.list-manage.com/subscribe/post?u=ad458b84a6914069ac105bdb2&id=9ff4faaa9c&f_id=005d6feaf0';
+const MC_HONEYPOT_NAME = 'b_ad458b84a6914069ac105bdb2_9ff4faaa9c';
 ---
 <section class:list={['stars relative overflow-hidden rounded-sm border border-white/5', compact ? 'p-8' : 'p-12 md:p-16']}>
   <div class="max-w-xl mx-auto text-center">
@@ -13,16 +15,39 @@ const body = encodeURIComponent("Hi Mare — I'd love to be on your newsletter l
     <p class="mt-4 text-[color:var(--ink-faint)]">
       Monthly-ish. Never spammy. Astrology insight, upcoming transits, and behind-the-scenes.
     </p>
-    <div class="mt-8 flex justify-center">
-      <a
-        href={`mailto:hello@astrowildchild.com?subject=${subject}&body=${body}`}
-        class="btn btn-primary"
-      >
-        Ask to be added
-      </a>
-    </div>
-    <p class="mt-4 text-xs text-[color:var(--ink-mute)]">
-      Signup form back soon — for now, a quick email does the trick.
-    </p>
+
+    <form
+      action={MC_ACTION}
+      method="post"
+      target="_blank"
+      novalidate
+      class="mt-8 max-w-md mx-auto"
+      data-newsletter
+    >
+      <div class="flex flex-col sm:flex-row gap-3">
+        <label class="sr-only" for="wild-letter-email">Email address</label>
+        <input
+          id="wild-letter-email"
+          type="email"
+          name="EMAIL"
+          required
+          autocomplete="email"
+          placeholder="you@somewhere.com"
+          class="flex-1 px-4 py-3 bg-[color:var(--night-deep)] border border-white/10 text-[color:var(--ink)] placeholder:text-[color:var(--ink-mute)] focus:outline-none focus:border-[color:var(--gold)] rounded-sm transition-colors"
+        />
+        <button type="submit" name="subscribe" class="btn btn-primary whitespace-nowrap">
+          Subscribe
+        </button>
+      </div>
+
+      {/* Mailchimp honeypot (anti-bot) — must be off-screen, users don't fill it */}
+      <div aria-hidden="true" style="position:absolute;left:-5000px;">
+        <input type="text" name={MC_HONEYPOT_NAME} tabindex="-1" value="" />
+      </div>
+
+      <p class="mt-3 text-xs text-[color:var(--ink-mute)]">
+        We'll never share your email. Unsubscribe with one click anytime.
+      </p>
+    </form>
   </div>
 </section>
