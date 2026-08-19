@@ -12,7 +12,7 @@ export interface Props {
 
 const {
   title = 'Astro Wild Child — Mare Punzalan',
-  description = 'Astrology, astrocartography, and cosmic guidance by Mare Punzalan.',
+  description = 'Astrology, natal readings, and cosmic guidance by Mare Punzalan.',
   image = '/images/og-default.jpg',
   noindex = false,
 } = Astro.props;
@@ -60,12 +60,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           "givenName": "Mare",
           "familyName": "Punzalan",
           "jobTitle": "Astrologer",
-          "description": "Toronto-based professional astrologer with over two decades of client work, specializing in evolutionary, psychological, and predictive astrology, with a focus on AstroCartoGraphy.",
+          "description": "Toronto-based professional astrologer with over two decades of client work, specializing in evolutionary, psychological, and predictive astrology.",
           "url": "https://astrowildchild.com/",
           "email": "hello@astrowildchild.com",
           "image": "https://astrowildchild.com/images/mare-warm.jpg",
           "address": { "@type": "PostalAddress", "addressLocality": "Toronto", "addressCountry": "CA" },
-          "knowsAbout": ["Astrology", "Astrocartography", "Natal Chart Reading", "Synastry", "Transits", "Evolutionary Astrology"],
+          "knowsAbout": ["Astrology", "Natal Chart Reading", "Synastry", "Transits", "Evolutionary Astrology", "Predictive Astrology"],
           "sameAs": ["https://instagram.com/astro.wild.child/", "https://facebook.com/astrowildchild/"]
         },
         {
@@ -73,7 +73,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           "@id": "https://astrowildchild.com/#business",
           "name": "Astro Wild Child",
           "alternateName": "Astro Wild Child — Astrology by Mare Punzalan",
-          "description": "Professional astrology readings, astrocartography, and cosmic guidance by Mare Punzalan.",
+          "description": "Professional astrology readings, synastry sessions, and cosmic guidance by Mare Punzalan.",
           "url": "https://astrowildchild.com/",
           "logo": "https://astrowildchild.com/brand/awc-logo.png",
           "image": "https://astrowildchild.com/images/mare-warm.jpg",
@@ -86,7 +86,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
           "@id": "https://astrowildchild.com/#website",
           "url": "https://astrowildchild.com/",
           "name": "Astro Wild Child",
-          "description": "Astrology, astrocartography, and cosmic guidance by Mare Punzalan.",
+          "description": "Astrology, natal readings, and cosmic guidance by Mare Punzalan.",
           "publisher": { "@id": "https://astrowildchild.com/#business" },
           "inLanguage": "en"
         }

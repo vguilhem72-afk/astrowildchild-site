@@ -9,12 +9,12 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 4);
 ---
-<Base title="Astro Wild Child — Astrology & Astrocartography by Mare Punzalan">
+<Base title="Astro Wild Child — Astrology & Guidance by Mare Punzalan">
   <!-- Hero -->
   <section class="stars relative">
     <div class="container-awc py-24 md:py-36 grid md:grid-cols-2 gap-16 items-center">
       <div>
-        <div class="text-xs uppercase tracking-[0.3em] text-[color:var(--gold)] mb-6">Astrology · Astrocartography · Guidance</div>
+        <div class="text-xs uppercase tracking-[0.3em] text-[color:var(--gold)] mb-6">Natal · Synastry · Transits</div>
         <h1 class="font-serif text-5xl md:text-7xl leading-[1.02] text-[color:var(--ink)]">
           Meet yourself <em class="italic text-[color:var(--gold-bright)]">under the stars</em>.
         </h1>

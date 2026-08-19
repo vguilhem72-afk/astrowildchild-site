@@ -8,7 +8,7 @@ export async function GET(context: APIContext) {
 
   return rss({
     title: 'Astro Wild Child',
-    description: 'Astrology, astrocartography, and cosmic guidance by Mare Punzalan.',
+    description: 'Astrology, natal readings, and cosmic guidance by Mare Punzalan.',
     site: context.site!,
     items: posts.map((p) => ({
       title: p.data.title,
