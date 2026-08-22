@@ -2,6 +2,9 @@ backend:
   name: github
   repo: vguilhem72-afk/astrowildchild-site
   branch: main
+  # Our own OAuth client (functions/auth.ts + functions/callback.ts), so login doesn't
+  # depend on the site being hosted on Netlify (Sveltia's default OAuth proxy).
+  base_url: https://astrowildchild.com
 
 # Media (upload folder + how the site references them)
 media_folder: "public/images/uploads"
