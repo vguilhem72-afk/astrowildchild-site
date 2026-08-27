@@ -2,7 +2,7 @@
 title: The Major Chart Patterns — How to Read Any Chart in Ten Seconds
 date: 2026-08-27T20:17:00+07:00
 author: Mare Punzalan
-featured_image: /images/uploads/9wSFjPha3WAATwDlv7jM--1--qln6m_4x-real-esrgan-x4-plus.png
+featured_image: /images/uploads/featureImagewebsite.png
 excerpt: |-
   The reason patterns are worth learning is that they orient you before you drown in detail.
   Modern astrology is complicated. It's easy to get lost. Patterns pull the camera back and show you the shape of the whole thing.
@@ -161,6 +161,6 @@ Then check the hemispheres. Which half of the chart is heaviest? Upper or lower,
 
 That's it. In under a minute you've read the core energy of the chart. Everything else you learn about signs, houses, and aspects sits on top of that structural foundation.
 
-_If you want to map your whole chart — pattern, planets, houses, aspects, and the way they all talk to each other — my guided workbook_ **_Know Thyself_** _walks you through every piece._
+_If you want to map your whole chart — pattern, planets, houses, aspects, and the way they all talk to each other — my guided workbook_ [**_Know Thyself_**](https://astrowildchild.com/shop/) _walks you through every piece._
 
 _And if you'd rather have someone read it for you, book a session and we'll go through your pattern and what it's asking of you._
