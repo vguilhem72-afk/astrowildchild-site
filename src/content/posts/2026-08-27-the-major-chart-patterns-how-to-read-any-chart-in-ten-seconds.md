@@ -5,7 +5,7 @@ author: Mare Punzalan
 featured_image: /images/uploads/9wSFjPha3WAATwDlv7jM--1--qln6m_4x-real-esrgan-x4-plus.png
 excerpt: |-
   The reason patterns are worth learning is that they orient you before you drown in detail.
-  Modern astrology is complicated. There are twelve signs, twelve houses, ten planets, dozens of aspects, asteroids, nodes, house systems, and enough interpretive layers to keep anyone busy for years. It's easy to get lost. Patterns pull the camera back and show you the shape of the whole thing.
+  Modern astrology is complicated. It's easy to get lost. Patterns pull the camera back and show you the shape of the whole thing.
 categories:
   - chart patterns
 tags:
