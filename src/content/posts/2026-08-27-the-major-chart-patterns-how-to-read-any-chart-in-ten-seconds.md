@@ -2,7 +2,7 @@
 title: The Major Chart Patterns — How to Read Any Chart in Ten Seconds
 date: 2026-08-27T20:17:00+07:00
 author: Mare Punzalan
-featured_image: ''
+featured_image: /images/uploads/9wSFjPha3WAATwDlv7jM--1--qln6m_4x-real-esrgan-x4-plus.jpg
 excerpt: ''
 categories:
   - chart patterns
@@ -29,6 +29,8 @@ The Bundle chart belongs to someone with a narrow, concentrated focus. Their ent
 
 **If this is you:** you specialize. You've probably been told to broaden your horizons, and you've probably ignored the advice because broadening doesn't feel like a gift, it feels like dilution. But don’t fret. It's the pattern doing what it does.
 
+![](/images/uploads/15.png)
+
 **2. The Bowl**
 
 All planets sit in one hemisphere of the chart — one 180° half, with the other half empty.
@@ -51,6 +53,8 @@ Which planet is the handle matters enormously. A Mars handle drives the whole ch
 
 **If this is you:** find your handle. That planet is doing more work than you probably realize.
 
+![](/images/uploads/GordonRamsay.png)
+
 **4. The Locomotive**
 
 Planets are spread across two-thirds of the chart, with an empty third. No specific handle, but the leading planet (the one that rises first as the wheel turns clockwise, meaning the one immediately clockwise from the empty space) is the driver.
@@ -58,6 +62,8 @@ Planets are spread across two-thirds of the chart, with an empty third. No speci
 The Locomotive is someone with drive, momentum, and a self-generating engine. They pull themselves through life without needing an external push, and they can generate energy in the empty third of their chart through sheer forward motion.
 
 **If this is you:** you know how to run. Rest is what you have to learn on purpose.
+
+![](/images/uploads/GordonRamsay%204.png)
 
 **5. The Bowl (Half-Chart) — sometimes overlaps**
 
@@ -73,6 +79,8 @@ At their best, See-Saw people are natural mediators, diplomats, and translators 
 
 **If this is you:** you've probably tried to choose a side. You can't. The pattern is asking you to hold both.
 
+![](/images/uploads/GordonRamsay%206.png)
+
 **7. The Splash**
 
 Planets spread evenly around the wheel. No obvious concentration.
@@ -81,6 +89,8 @@ The Splash person has interests everywhere. They're natural generalists — curi
 
 **If this is you:** you've probably been told to focus. The pattern is telling you that focus is your growth edge, not your default setting. Both are valid.
 
+![](/images/uploads/GordonRamsay%205.png)
+
 **8. The Splay**
 
 Planets form three or four distinct clusters, unevenly distributed, without the symmetry of a See-Saw.
@@ -88,6 +98,8 @@ Planets form three or four distinct clusters, unevenly distributed, without the 
 The Splay is the most individual of the patterns. There's no obvious center of gravity. The person moves through life following their own internal logic, hard to categorize and often hard to predict. Splay people tend to have unusual life paths precisely because their chart doesn't push them toward a standard shape.
 
 **If this is you:** you've probably given up trying to explain yourself with normal categories. Good.
+
+![](/images/uploads/GordonRamsay%207.png)
 
 **The Extended Patterns**
 
