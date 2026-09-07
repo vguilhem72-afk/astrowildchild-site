@@ -2,7 +2,7 @@
 title: This Moves You Out of Negative Energy
 date: 2026-09-02T22:09:00+07:00
 author: Mare Punzalan
-featured_image: /images/uploads/negativeenergyimage.png
+featured_image: /images/uploads/NegoEnergy.jpg
 excerpt: Every chart has built-in exits from negative energy — placements designed for release, movement, and reset. And every chart has built-in traps, placements that trap you in the same emotional loop if you're not paying attention.
 categories:
   - Moon, Mercury, Energy Work, Astrology Elements
