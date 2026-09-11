@@ -16,7 +16,7 @@ tags:
 draft: false
 ---
 
-# **Your Chart's Six Balancing Acts: How to Read Your Own Chart Through Them**
+## **Your Chart's Six Balancing Acts: How to Read Your Own Chart Through Them**
 
 Most people learn astrology as a list. Sun sign here, Moon sign there, twelve houses to memorize, ten planets to place, aspects to calculate, house rulers to trace. It's a lot. And it's the reason most beginners burn out. The pieces multiply faster than the meaning does.
 
@@ -26,7 +26,7 @@ Instead of twelve houses, see six axes. Each pair of opposite houses forms a con
 
 Here's the map.
 
-## **The Six Axes**
+### **The Six Axes**
 
 **1st / 7th — The Relating Axis (Self / Other)**
 
@@ -76,7 +76,7 @@ The conversation is about _doing and being._ Someone all 6th and no 12th runs th
 
 This axis also carries health in both directions. The 6th is physical care; the 12th is what happens when the body's care is neglected, or when illness becomes an invitation into deeper territory.
 
-### **What the Axes Actually Do**
+#### **What the Axes Actually Do**
 
 **They collapse twelve houses into six conversations.** Every house has a partner across the wheel, and its meaning only fully lands when read against that partner. Reading the 1st without the 7th is reading half a sentence. Once you see the axes, the whole chart starts to talk to itself.
 
@@ -86,7 +86,7 @@ Wherever you have all your planets on one side of an axis and nothing on the oth
 
 **They tell you where the growth pull is.** The emptier side of a heavily-weighted axis is often where the transits wake up this part of you.  Your chart hands you the strengths of one side, and life keeps insisting you balance it with the skills of the other. It's the axis at work.
 
-#### **How to Read Your Own Chart Through Them**
+##### **How to Read Your Own Chart Through Them**
 
 Pull up your chart. Instead of looking at each house separately, look at each _axis_. Six lookups instead of twelve.
 
@@ -99,7 +99,7 @@ For each pair, ask:
 
 That's it. In under ten minutes you have a systemic read of your chart — not the details, but the shape of the whole thing. Every specific placement you learn from here on gets slotted into that shape.
 
-##### **Why This Changes How You Learn Astrology**
+###### **Why This Changes How You Learn Astrology**
 
 Beginner astrology is often taught as memorization. Sun in Aries means this. Moon in Virgo means that. Mercury in the 3rd means the other thing. It's a lot to hold, and it treats every placement as if it were independent.
 
