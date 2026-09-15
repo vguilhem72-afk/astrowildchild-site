@@ -2,20 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Palette Mare 2026-09-14 — #49363c main / white letters / #cdfdff highlights
+   Anciens noms de vars conservés pour éviter de casser tous les composants,
+   mais mappés aux nouvelles couleurs. */
 :root {
-  --night: #0F0818;
-  --night-deep: #07060A;
-  --wine: #2A0D1C;
-  --wine-deep: #1A0A12;
-  --wine-glow: #320F22;
-  --ink: #F5F0EA;
-  --ink-soft: #E8D5A3;
-  --ink-faint: #8B7A6E;
-  --ink-mute: #5A4A54;
-  --gold: #C9A96E;
-  --gold-bright: #E8D5A3;
-  --rose: #C47E8A;
-  --rose-deep: #8B5A78;
+  /* Nouvelles couleurs Mare */
+  --wine-mare: #49363c;      /* Main color — dark burgundy/mauve */
+  --ice: #cdfdff;            /* Highlight (like "wild") */
+  --slate: #7d94a7;          /* Accent */
+  --rose-mare: #d18ea9;      /* Accent */
+
+  /* Mapping vers les anciens noms de vars (retro-compat) */
+  --night: #49363c;
+  --night-deep: #3a2b30;
+  --wine: #49363c;
+  --wine-deep: #3a2b30;
+  --wine-glow: #5a4148;
+  --ink: #ffffff;              /* Lettering : WHITE */
+  --ink-soft: #cdfdff;         /* Softer text : ice-tinted white */
+  --ink-faint: #a8b8c5;        /* Faded : slate-soft */
+  --ink-mute: #6f525c;         /* Muted mauve */
+  --gold: #cdfdff;             /* "Gold" → ice (highlight) */
+  --gold-bright: #cdfdff;      /* "wild" highlight color */
+  --rose: #d18ea9;
+  --rose-deep: #7d94a7;
+
   --serif: 'Cormorant Garamond', Georgia, serif;
   --sans: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
 }

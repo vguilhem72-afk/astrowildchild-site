@@ -10,14 +10,15 @@ const nav = [
 ];
 const path = Astro.url.pathname;
 ---
-<header class="sticky top-0 z-50 backdrop-blur-md bg-[color:var(--night-deep)]/80 border-b border-white/5">
-  <div class="container-awc flex items-center justify-between py-4">
+<header class="sticky top-0 z-50 backdrop-blur-md bg-[color:var(--night-deep)]/85 border-b border-white/5">
+  <div class="container-awc flex items-center justify-between py-4 gap-4">
     <a href="/" class="brand-wordmark group flex items-center gap-3 text-[color:var(--ink)] hover:text-[color:var(--gold-bright)] transition-colors" aria-label="Astro Wild Child — home">
       <img src="/brand/awc-logo.png" alt="" width="52" height="20" class="opacity-90 group-hover:opacity-100 transition-opacity" />
       <span class="font-serif text-[22px] leading-none tracking-[-.01em] font-medium hidden sm:inline">
         astro <span class="italic text-[color:var(--gold-bright)]">wild</span> child
       </span>
     </a>
+
     <nav class="hidden md:flex items-center gap-7">
       {nav.map((item) => (
         <a
@@ -31,11 +32,26 @@ const path = Astro.url.pathname;
         >{item.label}</a>
       ))}
     </nav>
-    <button
-      id="mobile-toggle"
-      class="md:hidden text-[color:var(--ink-soft)] p-2"
-      aria-label="Toggle menu"
-    >☰</button>
+
+    <div class="flex items-center gap-3">
+      <!-- Mare 2026-09-14 : search button (magnifying glass) -->
+      <button
+        id="search-toggle"
+        class="text-[color:var(--ink-soft)] hover:text-[color:var(--gold-bright)] p-2 transition-colors"
+        aria-label="Search the site"
+        title="Search (⌘K)"
+      >
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <circle cx="9" cy="9" r="6"/>
+          <path d="M13.5 13.5l4 4"/>
+        </svg>
+      </button>
+      <button
+        id="mobile-toggle"
+        class="md:hidden text-[color:var(--ink-soft)] p-2"
+        aria-label="Toggle menu"
+      >☰</button>
+    </div>
   </div>
   <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-[color:var(--night-deep)]/95">
     <nav class="container-awc py-4 flex flex-col gap-3">
@@ -46,8 +62,134 @@ const path = Astro.url.pathname;
   </div>
 </header>
 
+<!-- =============== Search dialog =============== -->
+<dialog id="search-dialog" class="fixed inset-0 m-0 p-0 max-w-full max-h-full w-full h-full bg-transparent">
+  <div class="fixed inset-0 bg-[color:var(--night-deep)]/85 backdrop-blur-md" id="search-backdrop"></div>
+  <div class="relative z-10 max-w-2xl mx-auto mt-[10vh] px-4">
+    <div class="bg-[color:var(--wine)] border border-white/10 rounded-lg shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-5 py-4 border-b border-white/10">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" class="text-[color:var(--gold-bright)] flex-none">
+          <circle cx="9" cy="9" r="6"/>
+          <path d="M13.5 13.5l4 4"/>
+        </svg>
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Search the journal, shop, and pages…"
+          autocomplete="off"
+          spellcheck="false"
+          class="flex-1 bg-transparent border-none outline-none text-[color:var(--ink)] placeholder-[color:var(--ink-faint)] text-base"
+        />
+        <button
+          id="search-close"
+          class="text-[color:var(--ink-faint)] hover:text-[color:var(--ink)] px-2 text-sm"
+          aria-label="Close search"
+        >Esc</button>
+      </div>
+      <div id="search-results" class="max-h-[60vh] overflow-y-auto"></div>
+      <div id="search-empty" class="hidden px-5 py-12 text-center text-[color:var(--ink-faint)] text-sm">
+        Type to search Mare's journal, offerings, and pages.
+      </div>
+    </div>
+  </div>
+</dialog>
+
 <script>
-  const btn = document.getElementById('mobile-toggle');
+  // Mare 2026-09-14 : search wiring — fetch /search-index.json, filter live.
+  const btnMobile = document.getElementById('mobile-toggle');
   const menu = document.getElementById('mobile-menu');
-  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+  btnMobile?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+
+  const searchBtn = document.getElementById('search-toggle');
+  const dialog = document.getElementById('search-dialog') as HTMLDialogElement | null;
+  const input = document.getElementById('search-input') as HTMLInputElement | null;
+  const results = document.getElementById('search-results');
+  const empty = document.getElementById('search-empty');
+  const closeBtn = document.getElementById('search-close');
+  const backdrop = document.getElementById('search-backdrop');
+
+  let indexPromise: Promise<any[]> | null = null;
+  const loadIndex = () => {
+    if (!indexPromise) {
+      indexPromise = fetch('/search-index.json').then((r) => r.json()).catch(() => []);
+    }
+    return indexPromise;
+  };
+
+  const escapeHtml = (s: string) =>
+    s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+
+  const highlight = (text: string, q: string) => {
+    if (!q) return escapeHtml(text);
+    const esc = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return escapeHtml(text).replace(new RegExp(`(${esc})`, 'ig'), '<mark class="bg-[color:var(--gold-bright)]/25 text-[color:var(--gold-bright)] px-0.5 rounded">$1</mark>');
+  };
+
+  const openSearch = async () => {
+    if (!dialog) return;
+    dialog.showModal();
+    setTimeout(() => input?.focus(), 30);
+    await loadIndex();
+  };
+  const closeSearch = () => dialog?.close();
+
+  searchBtn?.addEventListener('click', openSearch);
+  closeBtn?.addEventListener('click', closeSearch);
+  backdrop?.addEventListener('click', closeSearch);
+
+  // ⌘K / Ctrl+K opens search from anywhere
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      openSearch();
+    }
+    if (e.key === 'Escape' && dialog?.open) closeSearch();
+  });
+
+  input?.addEventListener('input', async () => {
+    const q = input.value.trim().toLowerCase();
+    if (!results || !empty) return;
+    if (!q) {
+      results.innerHTML = '';
+      empty.classList.remove('hidden');
+      return;
+    }
+    empty.classList.add('hidden');
+    const index = await loadIndex();
+    const scored = index
+      .map((it: any) => {
+        const hay = (it.title + ' ' + it.excerpt + ' ' + (it.categories || []).join(' ') + ' ' + (it.tags || []).join(' ') + ' ' + it.body).toLowerCase();
+        const titleHit = it.title.toLowerCase().includes(q) ? 3 : 0;
+        const bodyHit = hay.includes(q) ? 1 : 0;
+        return { it, score: titleHit + bodyHit };
+      })
+      .filter((r: any) => r.score > 0)
+      .sort((a: any, b: any) => b.score - a.score)
+      .slice(0, 12);
+
+    if (!scored.length) {
+      results.innerHTML = '<div class="px-5 py-8 text-center text-[color:var(--ink-faint)] text-sm">No results for "' + escapeHtml(q) + '".</div>';
+      return;
+    }
+
+    results.innerHTML = scored.map(({ it }: any) => `
+      <a href="/blog/${it.slug}" class="block px-5 py-4 border-b border-white/5 hover:bg-white/5 transition-colors">
+        <div class="font-serif text-lg text-[color:var(--ink)] leading-tight">${highlight(it.title, q)}</div>
+        ${it.excerpt ? `<div class="text-sm text-[color:var(--ink-faint)] mt-1 line-clamp-2">${highlight(it.excerpt, q)}</div>` : ''}
+        <div class="text-[10.5px] uppercase tracking-[0.12em] text-[color:var(--gold-bright)] mt-2">${new Date(it.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}${(it.categories || []).length ? ' · ' + (it.categories || []).join(' · ') : ''}</div>
+      </a>
+    `).join('');
+  });
+
+  // Reset input when opened
+  dialog?.addEventListener('close', () => {
+    if (input) { input.value = ''; }
+    if (results) results.innerHTML = '';
+    if (empty) empty.classList.remove('hidden');
+  });
 </script>
+
+<style>
+  #search-dialog::backdrop { display: none; }
+  #search-dialog[open] { display: block; }
+</style>

@@ -4,19 +4,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        night: '#0F0818',
-        'night-deep': '#07060A',
-        wine: '#2A0D1C',
-        'wine-deep': '#1A0A12',
-        'wine-glow': '#320F22',
-        ink: '#F5F0EA',
-        'ink-soft': '#E8D5A3',
-        'ink-faint': '#8B7A6E',
-        'ink-mute': '#5A4A54',
-        gold: '#C9A96E',
-        'gold-bright': '#E8D5A3',
-        rose: '#C47E8A',
-        'rose-deep': '#8B5A78',
+        /* Mare palette 2026-09-14 : #49363c main + #cdfdff highlight + accents */
+        night: '#49363c',
+        'night-deep': '#3a2b30',
+        wine: '#49363c',
+        'wine-deep': '#3a2b30',
+        'wine-glow': '#5a4148',
+        ink: '#ffffff',
+        'ink-soft': '#cdfdff',
+        'ink-faint': '#a8b8c5',
+        'ink-mute': '#6f525c',
+        gold: '#cdfdff',
+        'gold-bright': '#cdfdff',
+        rose: '#d18ea9',
+        'rose-deep': '#7d94a7',
+        /* Nouveaux tokens directs (à utiliser en priorité pour les nouveaux composants) */
+        ice: '#cdfdff',
+        slate: '#7d94a7',
       },
       fontFamily: {
         serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
