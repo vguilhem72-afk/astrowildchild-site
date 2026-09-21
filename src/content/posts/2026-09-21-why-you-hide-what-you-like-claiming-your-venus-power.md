@@ -9,6 +9,7 @@ categories:
   - Self-Worth
   - Self-Value
   - Self-Love
+  - astrology elements
 tags:
   - Venus in Signs
   - Venus Challenging Aspects
