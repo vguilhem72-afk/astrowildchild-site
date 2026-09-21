@@ -19,7 +19,14 @@ draft: false
 
 ## Why Venus Matters More Than You Think
 
-## 
+**Focus Breakdown**
+
+- Venus in Relationship
+- The Mythology and the Ugly Truth
+- The Signs That Challenge Venus
+- The Houses That Hide Venus
+- The Aspects That Damage Venus
+- Claiming Your Venus
 
 Venus is one of the most misunderstood planets in your chart. Most people reduce her to love and romance: who you attract, who you're attracted to, what your "type" is. But Venus is far more fundamental than that. She is your relationship with pleasure itself. Your capacity to enjoy life. Your ability to receive. Your sense of beauty — not just what you find beautiful but whether you find yourself beautiful. Your boundaries. Your values. What you will and won't tolerate. And at the deepest level, your self-worth. The quiet internal voice that either says "I deserve this" or "I don't."
 
@@ -101,7 +108,7 @@ Venus in the 12th hid because it was safer to not want. Venus square Saturn earn
 
 The first step is always the same, name what you want. Out loud. Without apology. Without justification. Without performing it for someone else's comfort. Just the raw, honest, undecorated truth of what you desire.
 
-That's Venus claimed.
+**That's Venus claimed.**
 
 Your chart is complicated. But it doesn't have to be when you know what to look for.
 
