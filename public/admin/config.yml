@@ -37,7 +37,7 @@ collections:
     format: "frontmatter"
     preview_path: "blog/{{slug}}"
     identifier_field: title
-    summary: "{{title}} — {{year}}-{{month}}-{{day}}"
+    summary: "{{title}} — {{date | date('YYYY-MM-DD')}}"
     sortable_fields: ['date', 'title']
     view_filters:
       - label: "Published"
