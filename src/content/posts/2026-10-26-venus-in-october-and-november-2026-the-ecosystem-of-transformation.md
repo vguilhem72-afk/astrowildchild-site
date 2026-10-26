@@ -1,5 +1,5 @@
 ---
-title: 'Venus in October and November 2026: The Ecosystem of Transformation'
+title: 'Venus Transit in October and November 2026: The Ecosystem of Transformation'
 date: 2026-10-20T11:33:00+07:00
 author: Mare Punzalan
 featured_image: /images/uploads/LibraSeason.jpg
