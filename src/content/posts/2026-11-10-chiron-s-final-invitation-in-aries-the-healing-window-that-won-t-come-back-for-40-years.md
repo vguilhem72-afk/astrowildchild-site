@@ -1,6 +1,6 @@
 ---
 title: 'Chiron’s Final Invitation in Aries: The Healing Window That Won’t Come Back for 40 Years'
-date: 2026-11-10T11:33:00+07:00
+date: 2026-11-10T11:38:00+07:00
 author: Mare Punzalan
 featured_image: /images/uploads/cool.jpg
 excerpt: Chiron is leaving Aries in April 2027. It will not return to this sign for over 40 years. Whatever healing is available in the Aries part of your chart right now is time-sensitive. And that is not a scare tactic. It is just how Chiron’s orbit works.
