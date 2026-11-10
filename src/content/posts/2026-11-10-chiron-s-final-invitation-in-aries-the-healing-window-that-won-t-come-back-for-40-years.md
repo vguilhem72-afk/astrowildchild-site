@@ -3,7 +3,7 @@ title: 'Chiron’s Final Invitation in Aries: The Healing Window That Won’t Co
 date: 2026-11-10T11:33:00+07:00
 author: Mare Punzalan
 featured_image: /images/uploads/cool.jpg
-excerpt: Chiron is leaving Aries in April 2027. It will not return to this sign for over 40 years. Whatever healing is available in the Aries part of your chart right now is time-sensitive. And that is not a scare tactic.That is not a scare tactic. It is just how Chiron’s orbit works.
+excerpt: Chiron is leaving Aries in April 2027. It will not return to this sign for over 40 years. Whatever healing is available in the Aries part of your chart right now is time-sensitive. And that is not a scare tactic. It is just how Chiron’s orbit works.
 categories:
   - chiron
   - saturn
@@ -22,7 +22,7 @@ draft: false
 
 ## **Chiron’s Final Invitation in Aries: The Healing Window With Saturn & Neptune in Aries Support**
 
-Chiron is leaving Aries in April 2027. It will not return to this sign for over 40 years. Whatever healing is available in the Aries part of your chart right now is time-sensitive. And that is not a scare tactic.That is not a scare tactic. It is just how Chiron’s orbit works.
+Chiron is leaving Aries in April 2027. It will not return to this sign for over 40 years. Whatever healing is available in the Aries part of your chart right now is time-sensitive. And that is not a scare tactic. It is just how Chiron’s orbit works.
 
 Chiron takes approximately 50 years to complete a full cycle through the zodiac. It has been in Aries since 2018. Nearly a decade of wounds around identity, self-assertion, independence, confidence, and the courage to simply be yourself without apology. Those wounds have been open. Some of them were exposed for the first time during this transit. Some of them you already knew about but had been avoiding. Either way, Chiron has been sitting on them, not letting you look away.
 
