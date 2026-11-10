@@ -70,8 +70,8 @@ Plant your Scorpio New Moon intention with the awareness that it will be illumin
 
 Because the universe rarely gives you floodlights on the entire field. When it does — what you planted matters more than usual.
 
-**Track daily lunar transits and how they affect your chart with AstroDesk.** A modern astrology workspace with features you won’t find anywhere else — retrograde shadow and station points at birth, Venus star phase integrated on the chart, three decan traditions switchable with one click, and fixed stars listed cleanly on a side panel instead of cluttering your wheel. Scan your client roster by transit criteria. Integrate your tarot deck, herbal planetary dictionary, and numerology into the same workspace. Everything on one screen. Customized to how you actually read — whether you practice evolutionary, traditional, or modern astrology.
+**Track daily lunar transits and how they affect your chart with AstroDesk.** A modern astrology workspace with features you won’t find anywhere else — retrograde shadow and station points at birth, Venus star phase integrated on the chart, three decan traditions switchable with one click, and fixed stars listed cleanly on a side panel instead of cluttering your wheel. Scan your client roster by transit criteria. Integrate your tarot deck, herbal planetary dictionary, and numerology into the same workspace. Everything on one screen. Customized to how you actually read, whether you practice evolutionary, traditional, or modern astrology.
 
 No AI interprets your chart. You do. That’s deliberate.
 
-AstroDesk was co-designed by a practicing astrologer with 15+ years of reading charts — not a developer guessing what astrologers need. Every feature exists because a real reading required it. Free to start. [astrodesk.astrowildchild.com](astrodesk.astrowildchild.com)
+AstroDesk was co-designed by a practicing astrologer with 15+ years of reading charts, not a developer guessing what astrologers need. Every feature exists because a real reading required it. Free to start. [astrodesk.astrowildchild.com](astrodesk.astrowildchild.com)
