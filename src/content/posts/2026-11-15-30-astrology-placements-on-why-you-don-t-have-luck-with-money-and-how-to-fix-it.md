@@ -1,6 +1,6 @@
 ---
 title: 30 + Astrology Placements on Why You Don’t Have Luck With Money and How to Fix It
-date: 2026-11-15T11:19:00+07:00
+date: 2026-11-15T11:38:00+07:00
 author: Mare Punzalan
 featured_image: /images/uploads/annual shift in purpose, goals (2).png
 excerpt: None of the placements below mean you’re doomed financially. A block is information, not a sentence. It tells you exactly where the work is, so you can stop guessing and start fixing. Each placement below comes with the block, the path through it, and an insider tip on what makes it better or worse.
@@ -194,4 +194,4 @@ Your money block has an address in your chart. Once you know where it lives, you
 
 Your money block shows you what to work on. Your timing shows you when to act.
 
-**astrodesk.astrowildchild.com**
+**[astrodesk.astrowildchild.com](astrodesk.astrowildchild.com)**
